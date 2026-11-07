@@ -21,16 +21,33 @@ jobs:
           java-version: 17
       - run: npm install
       - run: npx cap add android
+      - name: Stamp build number (the app uses it to show "new version available")
+        run: echo '{"build":${{ github.run_number }}}' > www/build.json
       - name: Add photo permissions
         run: |
           sed -i 's#<application#<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />\n    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />\n    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />\n    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />\n    <application#' android/app/src/main/AndroidManifest.xml
           grep -n "uses-permission" android/app/src/main/AndroidManifest.xml
+      - name: Add native tools (fast thumbnails, delete duplicates)
+        run: |
+          D=android/app/src/main/java/in/wondermayank/imagestudio
+          ls -R android/app/src/main/java | head -20
+          cp $D/MainActivity.java /tmp/MainActivity.orig
+          cp native/MediaTools.java native/MainActivity.java $D/
       - run: npx cap sync android
       - name: Use the fixed signing key (so updates install over the old app)
         run: |
           mkdir -p ~/.android
           cp debug.keystore ~/.android/debug.keystore
-      - run: cd android && chmod +x gradlew && ./gradlew assembleDebug
+      - name: Build APK (falls back to a build without native tools if they fail to compile)
+        run: |
+          cd android && chmod +x gradlew
+          if ! ./gradlew assembleDebug; then
+            echo "::warning::Native tools did not compile. Building without them."
+            D=app/src/main/java/in/wondermayank/imagestudio
+            rm -f $D/MediaTools.java
+            cp /tmp/MainActivity.orig $D/MainActivity.java
+            ./gradlew assembleDebug
+          fi
       - run: cp android/app/build/outputs/apk/debug/app-debug.apk ImageStudio.apk
       - uses: actions/upload-artifact@v4
         with:
@@ -40,6 +57,6 @@ jobs:
         continue-on-error: true
         with:
           tag_name: latest
-          name: Image Studio (latest APK)
+          name: Image Studio (latest APK) build ${{ github.run_number }}
           files: ImageStudio.apk
           make_latest: true
