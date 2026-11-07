@@ -248,6 +248,57 @@ input[type=range]{width:100%;accent-color:var(--primary);height:30px}
 .vclose{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:16px}
 .vname{position:absolute;top:calc(26px + env(safe-area-inset-top,0px));left:20px;right:76px;color:#fff;font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 #viewer img{max-height:74%}
+
+details.sec{margin-top:14px;background:var(--canvas-deep);border-radius:var(--radius-md);padding:0 16px}
+details.sec summary{list-style:none;cursor:pointer;font-weight:700;color:var(--ink);padding:15px 0;font-size:15px;display:flex;justify-content:space-between;align-items:center;min-height:44px}
+details.sec summary::-webkit-details-marker{display:none}
+details.sec summary::after{content:"";width:9px;height:9px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .2s;margin-right:4px}
+details.sec[open] summary::after{transform:rotate(-135deg)}
+.secb{padding:0 0 16px}
+.secb .field-label:first-child{margin-top:4px}
+.ordl{margin-top:10px;display:flex;flex-direction:column;gap:8px}
+.orow{display:flex;align-items:center;gap:10px;background:var(--surface);border-radius:var(--radius-sm);padding:6px 8px;box-shadow:var(--e-sm)}
+.orow img{width:38px;height:38px;border-radius:10px;object-fit:cover}
+.orow span{flex:1;font-size:12.5px;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.orow button{width:40px;height:40px;border-radius:50%;background:var(--canvas-deep);color:var(--ink);display:flex;align-items:center;justify-content:center}
+.pvo{margin-top:12px;align-items:center;gap:12px;background:var(--canvas-deep);border-radius:var(--radius-md);padding:10px}
+.pvo img{width:72px;height:72px;object-fit:contain;border-radius:12px;background:#fff}
+.pvo span{font-size:13px;color:var(--ink);font-weight:600;line-height:1.5}
+.banner{display:flex;align-items:center;gap:10px;margin:14px 0 0;padding:10px 10px 10px 18px;border-radius:var(--radius-pill);background:var(--primary-soft);color:var(--primary);font-weight:700;font-size:13px}
+.banner span{flex:1}
+.banner .btn{min-height:40px;padding:0 16px;font-size:13px}
+.topprog{position:fixed;left:0;right:0;top:0;height:4px;z-index:var(--z-toast);display:none;background:var(--canvas-deep)}
+.topprog i{display:block;height:100%;width:0;background:var(--primary);transition:width .15s}
+.pt{width:34px;height:34px}
+.pt.spin{transition:none}
+#pile{flex:0 0 34vh}
+#pileTxt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none;color:var(--ink)}
+#pileTxt b{font-size:30px;letter-spacing:-.5px}
+#pileTxt span{font-size:12px;color:var(--muted);font-weight:700;letter-spacing:1.2px;text-transform:uppercase}
+#folders{grid-template-columns:repeat(var(--cols,2),1fr);grid-auto-rows:minmax(76px,1fr);align-content:stretch;min-height:0}
+.fo{display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.fo.ph{opacity:.6}
+.fo.add{align-items:center;justify-content:center;gap:4px;border:2px dashed var(--hairline-strong);box-shadow:none;background:transparent;color:var(--primary)}
+.fo.add .fo-name{color:var(--primary)}
+.fo-h{justify-content:space-between;margin-bottom:6px}
+.fo-name{font-size:13px;font-weight:700;color:var(--ink);line-height:1.2;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;word-break:break-word;white-space:normal;flex:0 0 auto}
+.fo .st{margin-top:auto;padding-top:6px;flex-wrap:nowrap}
+.fo .st img{width:22px;height:22px;border-radius:7px}
+#sbar{display:flex;gap:12px}
+#sbar .btn{flex:1}
+.drow{background:var(--canvas-deep);border-radius:var(--radius-md);padding:10px;margin-top:10px;display:flex;gap:12px;align-items:center}
+.dkeep{text-align:center;font-size:11px;font-weight:700;color:var(--success)}
+.dkeep img,.dth img{width:64px;height:64px;object-fit:cover;border-radius:12px;display:block}
+.dth{position:relative;cursor:pointer;opacity:.45;border-radius:12px}
+.dth.on{opacity:1;box-shadow:0 0 0 3px var(--error)}
+.dups{display:flex;gap:8px;flex-wrap:wrap;flex:1}
+.fo-ico{flex:0 0 32px}
+#folders.dense .fo{padding:10px 8px}
+#folders.dense .fo-name{font-size:11px}
+#folders.dense .fo-n{padding:3px 7px;font-size:11px}
+#pile{transition:flex-basis .45s ease}
+#stage.sorted #pile{flex-basis:5vh}
+#sbar .btn{padding:0 14px;font-size:15px;white-space:nowrap}
 </style></head><body>
 <svg aria-hidden="true" width="0" height="0" style="position:absolute"><defs>
 <symbol id="i-gallery" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="1.8"/><path d="m21 15-4.5-4.5L6 21"/></symbol>
@@ -271,6 +322,8 @@ input[type=range]{width:100%;accent-color:var(--primary);height:30px}
 <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v12M7 11l5 5 5-5"/><path d="M4 19h16"/></symbol>
 <symbol id="i-replay" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></symbol>
 <symbol id="i-right" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+<symbol id="i-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+<symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
 </defs></svg>
 
 <div id="loader"><div class="loader-blob"></div></div>
@@ -282,6 +335,7 @@ input[type=range]{width:100%;accent-color:var(--primary);height:30px}
  </a>
  <div class="nav-right">
   <button class="nav-request" id="addBtn" aria-label="Add images"><svg class="i"><use href="#i-plus"/></svg></button>
+  <button class="theme-btn" id="langBtn" aria-label="Language" style="font-size:13px;font-weight:700">हिं</button>
   <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode"><svg class="i" id="themeIco"><use href="#i-moon"/></svg></button>
  </div>
 </div></header>
@@ -289,6 +343,7 @@ input[type=range]{width:100%;accent-color:var(--primary);height:30px}
 <div class="side" id="side"></div>
 
 <main>
+<div class="wrap"><div class="banner" id="apkBanner" style="display:none"><span id="apkTxt"></span><button class="btn btn-primary" id="apkGo">Download</button><button class="btn-icon" id="apkX" aria-label="Dismiss"><svg class="i"><use href="#i-x"/></svg></button></div></div>
 <section class="hero" id="hero"><div class="blob blob-1"></div><div class="blob blob-2"></div><div class="wrap">
  <span class="hero-badge"><i class="hero-dot"></i>Free image tools</span>
  <h1>Sort, convert and rename <span class="accent">your photos</span></h1>
@@ -313,6 +368,7 @@ input[type=range]{width:100%;accent-color:var(--primary);height:30px}
    <button class="chip" id="inv"><svg class="i"><use href="#i-invert"/></svg>Invert</button>
    <button class="chip" id="sort"><svg class="i"><use href="#i-sort"/></svg><span id="sortTxt">Sort: Newest</span></button>
    <button class="chip" id="refresh"><svg class="i"><use href="#i-replay"/></svg>Refresh</button>
+   <button class="chip" id="dupBtn"><svg class="i"><use href="#i-copy"/></svg>Duplicates</button>
    <button class="chip" id="pickMore"><svg class="i"><use href="#i-plus"/></svg>Add files</button>
   </div>
   <h3 class="sub-title" id="count"></h3>
@@ -334,44 +390,93 @@ input[type=range]{width:100%;accent-color:var(--primary);height:30px}
 <div id="selbar"><span id="selN">0 selected</span><button class="chip" id="sbConv"><svg class="i"><use href="#i-convert"/></svg>Convert</button><button class="chip" id="sbAi"><svg class="i"><use href="#i-sparkle"/></svg>AI Sort</button><button class="btn-icon" id="sbClr" aria-label="Clear selection"><svg class="i"><use href="#i-x"/></svg></button></div>
 <nav class="dock" id="dock" aria-label="Main"><div class="dock-bar" id="dockBar"><span class="dock-indicator" id="ind"></span></div></nav>
 
-<!-- Convert sheet -->
+<!-- Edit & export sheet -->
 <div class="ov" id="sheet"><div class="sheet">
  <div class="grab"></div>
- <h2>Convert &amp; Rename <small id="cnt"></small></h2>
- <span class="field-label">Format</span>
- <div class="depth-seg" id="fmt"><button class="depth-chip active" data-v="png">PNG</button><button class="depth-chip" data-v="jpeg">JPG</button><button class="depth-chip" data-v="webp">WebP</button></div>
- <span class="field-label">Quality for JPG and WebP: <b id="qv">90</b>%</span>
- <input type="range" id="q" min="30" max="100" value="90">
- <span class="field-label">Size</span>
- <div class="chip-row" id="scale"><button class="chip active" data-v="1">Original</button><button class="chip" data-v=".75">75%</button><button class="chip" data-v=".5">50%</button><button class="chip" data-v=".25">25%</button></div>
- <span class="field-label">Rotate</span>
- <div class="chip-row" id="rot"><button class="chip active" data-v="0">0°</button><button class="chip" data-v="90">90°</button><button class="chip" data-v="180">180°</button><button class="chip" data-v="270">270°</button></div>
- <span class="field-label">Name pattern: <b>n</b> is the number, <b>{o}</b> original name, <b>{d}</b> date</span>
- <input class="text-input" id="pat" value="Photo_n" autocomplete="off">
- <div class="chip-row" style="margin-top:12px" id="chips"></div>
- <div class="row2"><div><span class="field-label">Start number</span><input class="text-input" id="start" type="number" value="1" min="0"></div>
- <div><span class="field-label">Digits</span><select class="text-input" id="pad"><option value="1">1, 2, 3</option><option value="2">01, 02</option><option value="3">001, 002</option><option value="4">0001</option></select></div></div>
+ <h2>Edit &amp; Export <small id="cnt"></small></h2>
+ <span class="field-label">Output</span>
+ <div class="depth-seg" id="outm"><button class="depth-chip active" data-v="img">Images</button><button class="depth-chip" data-v="pdf">PDF</button><button class="depth-chip" data-v="zip">ZIP</button></div>
+
+ <details class="sec" id="secFmt" open><summary>Format and quality</summary><div class="secb">
+  <div class="depth-seg" id="fmt"><button class="depth-chip active" data-v="png">PNG</button><button class="depth-chip" data-v="jpeg">JPG</button><button class="depth-chip" data-v="webp">WebP</button></div>
+  <span class="field-label">Quality for JPG and WebP: <b id="qv">90</b>%</span>
+  <input type="range" id="q" min="30" max="100" value="90">
+ </div></details>
+
+ <details class="sec" id="secSize"><summary>Size, crop and file size</summary><div class="secb">
+  <span class="field-label">Exact size (pixels)</span>
+  <div class="chip-row" id="presets" style="flex-wrap:wrap"></div>
+  <div class="row2" style="margin-top:12px"><input class="text-input" id="pw" type="number" min="0" placeholder="Width"><input class="text-input" id="ph" type="number" min="0" placeholder="Height"></div>
+  <span class="field-label">Fit</span>
+  <div class="chip-row" id="fit" style="flex-wrap:wrap"><button class="chip active" data-v="crop">Crop to fill</button><button class="chip" data-v="fit">Fit on white</button><button class="chip" data-v="stretch">Stretch</button></div>
+  <div class="chip-row" style="margin-top:12px"><button class="chip" id="white">White background</button></div>
+  <span class="field-label">Crop focus</span>
+  <div class="chip-row" id="anch"><button class="chip active" data-v="c">Center</button><button class="chip" data-v="t">Top (faces)</button></div>
+  <span class="field-label">Scale (when no exact size)</span>
+  <div class="chip-row" id="scale" style="flex-wrap:wrap"><button class="chip active" data-v="1">Original</button><button class="chip" data-v=".75">75%</button><button class="chip" data-v=".5">50%</button><button class="chip" data-v=".25">25%</button></div>
+  <span class="field-label">Target file size</span>
+  <div class="chip-row" id="tgt" style="flex-wrap:wrap"><button class="chip active" data-v="0">Off</button><button class="chip" data-v="20">20 KB</button><button class="chip" data-v="50">50 KB</button><button class="chip" data-v="100">100 KB</button><button class="chip" data-v="200">200 KB</button></div>
+  <div class="row2"><div><span class="field-label">Max KB</span><input class="text-input" id="kmax" type="number" min="0" placeholder="50"></div><div><span class="field-label">Min KB (optional)</span><input class="text-input" id="kmin" type="number" min="0" placeholder="20"></div></div>
+  <div class="chip-row" style="margin-top:14px"><button class="chip" id="savePre">Save as my preset</button></div>
+  <p class="hint">Sizes differ by exam and year. Always check your notification. Compressing needs JPG or WebP, so PNG switches to JPG.</p>
+ </div></details>
+
+ <details class="sec" id="secWm"><summary>Watermark</summary><div class="secb">
+  <div class="chip-row" id="wmMode"><button class="chip active" data-v="off">Off</button><button class="chip" data-v="text">Text</button><button class="chip" data-v="logo">Logo</button></div>
+  <input class="text-input" id="wmText" placeholder="Your name" maxlength="40" style="margin-top:12px">
+  <div class="chip-row" style="margin-top:12px"><button class="chip" id="wmPick">Choose logo image</button></div><input type="file" id="wmFile" accept="image/*" hidden>
+  <span class="field-label">Position</span>
+  <div class="chip-row" id="wmPos" style="flex-wrap:wrap"><button class="chip active" data-v="br">Bottom right</button><button class="chip" data-v="bl">Bottom left</button><button class="chip" data-v="c">Center</button><button class="chip" data-v="tile">Tiled</button></div>
+  <span class="field-label">Size: <b id="wsv">8</b>%</span><input type="range" id="wmSize" min="3" max="30" value="8">
+  <span class="field-label">Opacity: <b id="wov">60</b>%</span><input type="range" id="wmOp" min="10" max="100" value="60">
+ </div></details>
+
+ <details class="sec" id="secPdf" style="display:none"><summary>PDF pages</summary><div class="secb">
+  <span class="field-label">Page size</span>
+  <div class="chip-row" id="pgSize"><button class="chip active" data-v="a4">A4</button><button class="chip" data-v="letter">Letter</button><button class="chip" data-v="fit">Fit image</button></div>
+  <span class="field-label">Orientation</span>
+  <div class="chip-row" id="pgOr"><button class="chip active" data-v="auto">Auto</button><button class="chip" data-v="p">Portrait</button><button class="chip" data-v="l">Landscape</button></div>
+  <span class="field-label">Margin</span>
+  <div class="chip-row" id="pgMar"><button class="chip active" data-v="0">None</button><button class="chip" data-v="18">Small</button><button class="chip" data-v="36">Medium</button></div>
+ </div></details>
+
+ <details class="sec" id="secName"><summary>Order, rotate and name</summary><div class="secb">
+  <span class="field-label">Order</span>
+  <div class="chip-row" id="ordr"><button class="chip active" data-v="sel">As selected</button><button class="chip" data-v="name">Name</button><button class="chip" data-v="date">Date</button></div>
+  <div class="ordl" id="ordList"></div>
+  <span class="field-label">Rotate</span>
+  <div class="chip-row" id="rot" style="flex-wrap:wrap"><button class="chip active" data-v="0">0°</button><button class="chip" data-v="90">90°</button><button class="chip" data-v="180">180°</button><button class="chip" data-v="270">270°</button></div>
+  <span class="field-label">Name pattern: <b>n</b> is the number, <b>{o}</b> original name, <b>{d}</b> date</span>
+  <input class="text-input" id="pat" value="Photo_n" autocomplete="off">
+  <div class="chip-row" style="margin-top:12px;flex-wrap:wrap" id="chips"></div>
+  <div class="row2"><div><span class="field-label">Start number</span><input class="text-input" id="start" type="number" value="1" min="0"></div>
+  <div><span class="field-label">Digits</span><select class="text-input" id="pad"><option value="1">1, 2, 3</option><option value="2">01, 02</option><option value="3">001, 002</option><option value="4">0001</option></select></div></div>
+ </div></details>
+
  <div class="prev" id="prev"></div>
+ <div class="pvo" id="pvOut" style="display:none"><img id="pvImg" alt=""><span id="pvTxt"></span></div>
  <div class="progress" id="prog"><i></i></div>
- <div class="row2" style="margin-top:20px"><button class="btn btn-secondary" id="close">Cancel</button><button class="btn btn-primary" id="go"><svg class="i"><use href="#i-download"/></svg>Convert &amp; Save</button></div>
- <button class="btn btn-secondary btn-block" id="goShare" style="margin-top:12px"><svg class="i"><use href="#i-share"/></svg>Convert &amp; Share</button>
+ <div class="row2" style="margin-top:20px"><button class="btn btn-secondary" id="close">Cancel</button><button class="btn btn-primary" id="go"><svg class="i"><use href="#i-download"/></svg>Export</button></div>
+ <div class="row2" style="margin-top:12px"><button class="btn btn-secondary" id="goPrev"><svg class="i"><use href="#i-gallery"/></svg>Preview first</button><button class="btn btn-secondary" id="goShare"><svg class="i"><use href="#i-share"/></svg>Share</button></div>
 </div></div>
 
 <!-- AI Sort stage -->
 <div id="stage">
- <div class="sh"><button class="btn-icon" id="sback" aria-label="Back"><svg class="i" style="margin:auto"><use href="#i-back"/></svg></button><h2>AI <span>Sort</span></h2><button class="btn-icon" id="sset" aria-label="Sort settings"><svg class="i" style="margin:auto"><use href="#i-settings"/></svg></button></div>
+ <div class="sh"><button class="btn-icon" id="sback" aria-label="Back"><svg class="i"><use href="#i-back"/></svg></button><h2>AI <span>Sort</span></h2><button class="btn-icon" id="sset" aria-label="Settings"><svg class="i"><use href="#i-settings"/></svg></button></div>
  <div id="stats"><div class="stat">Images<b id="s1">0</b></div><div class="stat">Folders<b id="s2">0</b></div><div class="stat">Duplicates<b id="s3">0</b></div></div>
  <div id="stinfo"></div>
  <div class="progress" id="sprog"><i></i></div>
- <div id="pile"></div>
+ <div id="pile"><div id="pileTxt"></div></div>
  <div id="folders"></div>
- <div id="sbar"><button class="btn btn-primary btn-lg btn-block" id="sortGo"></button></div>
+ <div id="sbar"><button class="btn btn-secondary btn-lg" id="sortReplay" style="display:none"><svg class="i"><use href="#i-replay"/></svg>Replay</button><button class="btn btn-primary btn-lg" id="sortGo"></button></div>
 </div>
 
-<!-- Sort settings -->
+<!-- Settings -->
 <div class="ov" id="setp"><div class="sheet">
  <div class="grab"></div>
- <h2>Sort settings</h2>
+ <h2>Settings</h2>
+ <span class="field-label">Language</span>
+ <div class="depth-seg" id="langSeg"><button class="depth-chip" data-v="en">English</button><button class="depth-chip" data-v="hi">हिंदी</button></div>
  <span class="field-label">Sorting engine</span>
  <div class="depth-seg" id="prov"><button class="depth-chip" data-v="groq">Groq</button><button class="depth-chip" data-v="gemini">Gemini</button><button class="depth-chip" data-v="rules">Offline</button></div>
  <span class="field-label">Groq API key (console.groq.com)</span><input class="text-input" id="gk" type="password" placeholder="gsk_...">
@@ -379,7 +484,10 @@ input[type=range]{width:100%;accent-color:var(--primary);height:30px}
  <span class="field-label">Gemini API key (aistudio.google.com)</span><input class="text-input" id="mk" type="password" placeholder="AIza...">
  <span class="field-label">Gemini model</span><input class="text-input" id="mm" placeholder="gemini-2.5-flash">
  <span class="field-label">Folders (comma separated)</span><input class="text-input" id="cats">
+ <div class="chip-row" style="margin-top:14px"><button class="chip" id="clrLbl">Forget saved labels</button></div>
+ <p class="hint" id="lblN"></p>
  <p class="hint">Keys stay on this phone. With Groq or Gemini, small previews of your images are sent to that service to be labelled. Offline sends nothing.</p>
+ <div class="chip-row" style="margin-top:6px"><button class="chip" id="chkApk">Check for app update</button></div>
  <div class="row2" style="margin-top:20px"><button class="btn btn-secondary" id="setx">Cancel</button><button class="btn btn-primary" id="setok">Save</button></div>
 </div></div>
 
@@ -389,21 +497,35 @@ input[type=range]{width:100%;accent-color:var(--primary);height:30px}
  <h2 id="ftitle"></h2>
  <div id="fgrid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px"></div>
  <div class="row2" style="margin-top:20px"><button class="btn btn-secondary" id="fx">Close</button><button class="btn btn-primary" id="fsel"><svg class="i"><use href="#i-all"/></svg>Select in gallery</button></div>
+ <button class="btn btn-danger btn-block" id="fdup" style="margin-top:12px;display:none"><svg class="i"><use href="#i-trash"/></svg>Review and delete</button>
 </div></div>
 
+<!-- Duplicates -->
+<div class="ov" id="dups"><div class="sheet">
+ <div class="grab"></div>
+ <h2>Duplicate photos <small id="dupN"></small></h2>
+ <p class="hint">The oldest photo is kept. Tap a duplicate to keep it instead.</p>
+ <div id="dupList"></div>
+ <div class="row2" style="margin-top:20px"><button class="btn btn-secondary" id="dupX">Close</button><button class="btn btn-danger" id="dupDel">Delete selected</button></div>
+</div></div>
+
+<div class="topprog" id="topProg"><i></i></div>
 <div id="viewer"><img id="vimg" alt=""><div class="vname" id="vname"></div><button class="btn-icon vclose" id="vclose" aria-label="Close"><svg class="i"><use href="#i-x"/></svg></button><div class="vbar"><button class="btn-icon" id="vprev" aria-label="Previous"><svg class="i"><use href="#i-back"/></svg></button><button class="btn btn-primary" id="vsel">Select</button><button class="btn-icon" id="vnext" aria-label="Next"><svg class="i"><use href="#i-right"/></svg></button></div></div>
 <div class="toast" id="toast" role="status"></div>
 
 <script>
 const $=id=>document.getElementById(id);
 const ic=n=>`<svg class="i"><use href="#i-${n}"/></svg>`;
-const APP_VER='2026.11.06-1';
+const APP_VER='2026.11.06-2';
 let items=[],uid=0,sortMode=0;const sorts=['Newest','Name','Oldest','Size'];
 const opt={fmt:'png',scale:1,rot:0};
 const cap=window.Capacitor,native=cap&&cap.isNativePlatform&&cap.isNativePlatform();
 const sel=()=>items.filter(i=>i.sel);
 const base=n=>n.replace(/\.[^.]+$/,'');
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+var HI={};let lang='en';try{lang=localStorage.getItem('ts_lang')==='hi'?'hi':'en'}catch(e){}
+function t(k,v){let x=(lang==='hi'&&HI[k])||k;return v?x.replace(/\{(\w+)\}/g,(m,y)=>v[y]!==undefined?v[y]:m):x}
+const esc=x=>String(x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function toast(m){const t=$('toast');t.textContent=m;t.classList.add('show');clearTimeout(t._);t._=setTimeout(()=>t.classList.remove('show'),3200)}
 
 // loader
@@ -429,11 +551,11 @@ NAV.forEach(n=>{
 function setNav(id){document.querySelectorAll('.dock-btn,.side button').forEach(b=>b.setAttribute('aria-current',b.dataset.id===id?'true':'false'));
   const t=document.querySelector('.dock-btn[data-id="'+id+'"]');if(t){$('ind').style.setProperty('--dx',t.offsetLeft+'px');$('ind').style.width=t.offsetWidth+'px';$('ind').style.height=t.offsetHeight+'px'}}
 function restoreNav(){setNav($('stage').classList.contains('on')?'ai':'home')}
-function closeAll(keep){['sheet','setp','fold'].forEach(i=>$(i).classList.remove('on'));closeStage();if(!keep)setNav('home')}
+function closeAll(keep){['sheet','setp','fold','dups'].forEach(i=>$(i).classList.remove('on'));closeStage();if(!keep)setNav('home')}
 function navTo(id){
   if(id==='home'){closeAll();scrollTo({top:0,behavior:'smooth'})}
   else if(id==='ai'){closeAll(true);openStage()}
-  else if(id==='convert'){if(!sel().length){toast('Select some images first');return}closeAll(true);$('sheet').classList.add('on');prev();setNav('convert')}
+  else if(id==='convert'){if(!sel().length){toast(t('Select some images first'));return}closeAll(true);$('sheet').classList.add('on');openSheet();setNav('convert')}
   else if(id==='set'){closeAll(true);fillSet();$('setp').classList.add('on');setNav('set')}
 }
 setNav('home');addEventListener('resize',restoreNav);
@@ -441,7 +563,7 @@ setNav('home');addEventListener('resize',restoreNav);
 // ===== GALLERY (reads every photo on the phone) =====
 const IMGX=/\.(jpe?g|png|webp|gif|bmp|avif)$/i;
 const MIMES={jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png',webp:'image/webp',gif:'image/gif',bmp:'image/bmp',avif:'image/avif'};
-const Media=native&&cap.Plugins.Media,FSP=native&&cap.Plugins.Filesystem;
+const Media=native&&cap.Plugins.Media,FSP=native&&cap.Plugins.Filesystem,MT=native&&cap.Plugins.MediaTools;
 const PAGE=60;let album='__all',glist=[],loading=false,loadedAt=0,lastSig='',tiles=new Map();
 const encPath=p=>'file://'+p.split('/').map(encodeURIComponent).join('/');
 const fmtN=n=>n.toLocaleString('en-IN');
@@ -450,6 +572,20 @@ const pick=()=>$('file').click();
 $('ver').textContent=APP_VER;
 function showLib(on){$('dropPanel').style.display=on?'none':'block';$('lib').style.display=on?'block':'none';$('hero').style.display=on?'none':'block'}
 function setDrop(t,s2,btn){$('dropTitle').textContent=t;$('dropSub').textContent=s2;$('dropBtn').style.display=btn?'':'none';$('dropBtn').textContent=btn||''}
+let selSeq=0;const setSel=(it,v)=>{it.sel=v;if(v)it.seq=++selSeq};
+const thumbQ=[];let thumbT=0;
+function wantThumb(it,img){
+  if(!MT||!it.path){img.src=it.url;return}
+  if(it.turl){img.src=it.turl;return}
+  thumbQ.push([it,img]);if(!thumbT)thumbT=setTimeout(flushThumbs,30);
+}
+async function flushThumbs(){
+  thumbT=0;const b=thumbQ.splice(0,24);if(thumbQ.length)thumbT=setTimeout(flushThumbs,10);
+  try{
+    const r=await MT.getThumbs({paths:b.map(x=>x[0].path),size:256,square:true});
+    b.forEach(([it,img],i)=>{const p=r.thumbs[i];it.turl=p?cap.convertFileSrc('file://'+p):it.url;img.src=it.turl});
+  }catch(e){b.forEach(([it,img])=>{img.src=it.url})}
+}
 function view(){
   const l=album==='__all'?items.slice():items.filter(i=>i.albumId===album);
   const f=[(a,b)=>b.mtime-a.mtime,(a,b)=>a.name.localeCompare(b.name),(a,b)=>a.mtime-b.mtime,(a,b)=>b.size-a.size][sortMode];
@@ -460,7 +596,7 @@ function renderAlbums(){
   if(album!=='__all'&&!g.has(album))album='__all';
   const arr=[...g].sort((a,b)=>b[1].c-a[1].c);
   const host=$('albums');host.innerHTML='';
-  [['__all',{n:'All photos',c:items.length}],...arr].forEach(([id,e])=>{
+  [['__all',{n:t('All photos'),c:items.length}],...arr].forEach(([id,e])=>{
     const b=document.createElement('button');b.className='chip'+(id===album?' active':'');
     b.innerHTML='<span></span><span class="cnum">'+fmtN(e.c)+'</span>';b.firstChild.textContent=e.n;
     b.onclick=()=>{album=id;renderAlbums();render();scrollTo({top:0})};host.appendChild(b);
@@ -468,8 +604,8 @@ function renderAlbums(){
 }
 function mkTile(it){
   const d=document.createElement('div');d.className='tile'+(it.sel?' sel':'');d.dataset.id=it.id;
-  d.innerHTML=`<img src="${it.url}" loading="lazy" decoding="async" alt=""><div class="chk">${ic('check')}</div><div class="nm"></div>`;
-  d.querySelector('.nm').textContent=it.name;
+  d.innerHTML=`<img loading="lazy" decoding="async" alt=""><div class="chk">${ic('check')}</div><div class="nm"></div>`;
+  d.querySelector('.nm').textContent=it.name;wantThumb(it,d.querySelector('img'));
   let lp=false,tm;
   const end=()=>clearTimeout(tm);
   d.onpointerdown=()=>{lp=false;tm=setTimeout(()=>{lp=true;toggle(it);if(navigator.vibrate)navigator.vibrate(15)},450)};
@@ -488,19 +624,19 @@ function render(){glist=view();tiles=new Map();$('grid').innerHTML='';appendMore
 new IntersectionObserver(es=>{if(es.some(e=>e.isIntersecting))fill()},{rootMargin:'800px'}).observe($('more'));
 function updateUI(){
   const n=sel().length;
-  $('count').textContent=fmtN(glist.length)+' photos'+(n?' · '+fmtN(n)+' selected':'');
-  $('selN').textContent=fmtN(n)+' selected';$('selbar').classList.toggle('on',n>0);
+  $('count').textContent=t('{n} photos',{n:fmtN(glist.length)})+(n?' · '+t('{n} selected',{n:fmtN(n)}):'');
+  $('selN').textContent=t('{n} selected',{n:fmtN(n)});$('selbar').classList.toggle('on',n>0);
 }
 function paintSel(it){const t=tiles.get(it.id);if(t)t.classList.toggle('sel',it.sel)}
 function paintAll(){items.forEach(paintSel);updateUI()}
-function toggle(it){it.sel=!it.sel;paintSel(it);updateUI()}
+function toggle(it){setSel(it,!it.sel);paintSel(it);updateUI()}
 
 // full-screen viewer
 let vi=-1;
 function openViewer(it){vi=glist.findIndex(x=>x.id===it.id);showV();$('viewer').classList.add('on')}
 function showV(){const it=glist[vi];if(!it)return;$('vimg').src=it.url;
-  $('vname').textContent=it.name+'  ·  '+(vi+1)+' of '+glist.length;
-  $('vsel').innerHTML=it.sel?ic('check')+'Selected':ic('plus')+'Select';$('vsel').className='btn '+(it.sel?'btn-secondary':'btn-primary')}
+  $('vname').textContent=it.name+'  ·  '+t('{a} of {b}',{a:vi+1,b:glist.length});
+  $('vsel').innerHTML=it.sel?ic('check')+esc(t('Selected')):ic('plus')+esc(t('Select'));$('vsel').className='btn '+(it.sel?'btn-secondary':'btn-primary')}
 $('vprev').onclick=()=>{if(vi>0){vi--;showV()}};
 $('vnext').onclick=()=>{if(vi<glist.length-1){vi++;showV()}};
 $('vsel').onclick=()=>{const it=glist[vi];if(it){toggle(it);showV()}};
@@ -511,24 +647,24 @@ $('viewer').addEventListener('touchstart',e=>{sx=e.touches[0].clientX},{passive:
 $('viewer').addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-sx;if(Math.abs(dx)>60){dx<0?$('vnext').onclick():$('vprev').onclick()}});
 
 // toolbar
-$('all').onclick=()=>{glist.forEach(i=>i.sel=true);paintAll()};
+$('all').onclick=()=>{glist.forEach(i=>{if(!i.sel)setSel(i,true)});paintAll()};
 const clearSel=()=>{items.forEach(i=>i.sel=false);paintAll()};
 $('none').onclick=clearSel;$('sbClr').onclick=clearSel;
-$('inv').onclick=()=>{glist.forEach(i=>i.sel=!i.sel);paintAll()};
-$('sort').onclick=()=>{sortMode=(sortMode+1)%4;$('sortTxt').textContent='Sort: '+sorts[sortMode];render()};
+$('inv').onclick=()=>{glist.forEach(i=>setSel(i,!i.sel));paintAll()};
+$('sort').onclick=()=>{sortMode=(sortMode+1)%4;$('sortTxt').textContent=t('Sort: {s}',{s:t(sorts[sortMode])});render()};
 $('refresh').onclick=()=>loadGallery(true,true);
 $('pickMore').onclick=pick;$('addBtn').onclick=pick;$('pickLink').onclick=e=>{e.stopPropagation();pick()};
 $('sbConv').onclick=()=>navTo('convert');$('sbAi').onclick=()=>navTo('ai');
 $('drop').onclick=()=>native?loadGallery(false,true):pick();
 $('drop').onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();$('drop').onclick()}};
 $('file').onchange=e=>{
-  [...e.target.files].forEach(f=>items.push({id:++uid,name:f.name,album:'Picked files',albumId:'picked',size:f.size,mtime:f.lastModified,url:URL.createObjectURL(f),mime:f.type,file:f,sel:false}));
+  [...e.target.files].forEach(f=>items.push({id:++uid,name:f.name,album:t('Picked files'),albumId:'picked',size:f.size,mtime:f.lastModified,url:URL.createObjectURL(f),mime:f.type,file:f,sel:false}));
   e.target.value='';showLib(true);renderAlbums();render();
 };
 
 async function loadGallery(quiet,force){
   if(loading)return;loading=true;
-  if(!quiet)setDrop('Loading your photos…','Reading every folder. Large galleries take a few seconds.','');
+  if(!quiet)setDrop(t('Loading your photos…'),t('Reading every folder. Large galleries take a few seconds.'),'');
   try{
     const {albums}=await Media.getAlbums();
     const out=[],seen=new Set();
@@ -539,10 +675,10 @@ async function loadGallery(quiet,force){
         for(const f of r.files){
           if(f.type!=='file'||f.name[0]==='.'||!IMGX.test(f.name))continue;
           const ext=f.name.split('.').pop().toLowerCase();
-          out.push({id:0,name:f.name,album:a.name,albumId:a.identifier,size:f.size||0,mtime:f.mtime||f.ctime||0,uri:f.uri,url:cap.convertFileSrc(f.uri),mime:MIMES[ext],sel:false});
+          out.push({id:0,path:a.identifier+'/'+f.name,name:f.name,album:a.name,albumId:a.identifier,size:f.size||0,mtime:f.mtime||f.ctime||0,uri:f.uri,url:cap.convertFileSrc(f.uri),mime:MIMES[ext],sel:false});
         }
       }catch(e){}
-      if(!quiet)$('dropSub').textContent='Found '+fmtN(out.length)+' photos…';
+      if(!quiet)$('dropSub').textContent=t('Found {n} photos…',{n:fmtN(out.length)});
     }
     const sig=out.length+':'+out.reduce((m,o)=>Math.max(m,o.mtime),0);
     if(quiet&&!force&&sig===lastSig){loading=false;return}
@@ -550,11 +686,11 @@ async function loadGallery(quiet,force){
     const keep=new Set(items.filter(i=>i.sel&&i.uri).map(i=>i.uri));
     out.forEach(o=>{o.id=++uid;o.sel=keep.has(o.uri)});
     items=items.filter(i=>i.file).concat(out);loadedAt=Date.now();
-    if(!items.length){setDrop('No photos found','Nothing was found in your gallery yet.','Try again');showLib(false)}
+    if(!items.length){setDrop(t('No photos found'),t('Nothing was found in your gallery yet.'),t('Try again'));showLib(false)}
     else{showLib(true);renderAlbums();render()}
   }catch(e){
-    if(!items.length){setDrop('Photo access needed','Tap below and choose Allow all. If Android does not ask, open Settings, Apps, Image Studio, Permissions, Photos and videos.','Allow access');showLib(false)}
-    else toast('Could not refresh: '+(e.message||e));
+    if(!items.length){setDrop(t('Photo access needed'),t('Tap below and choose Allow all. If Android does not ask, open Settings, Apps, Image Studio, Permissions, Photos and videos.'),t('Allow access'));showLib(false)}
+    else toast(t('Could not refresh')+': '+(e.message||e));
   }
   loading=false;
 }
@@ -573,85 +709,280 @@ async function saveToAlbum(data,mime,fn){
   await Media.savePhoto({path:'data:'+mime+';base64,'+data,albumIdentifier:alb,fileName:fn.replace(/\.[^.]+$/,'')});
 }
 
-// convert sheet
-function seg(id,key,num,cls){$(id).onclick=e=>{const b=e.target.closest('button');if(!b)return;[...$(id).children].forEach(x=>x.classList.remove('active'));b.classList.add('active');opt[key]=num?+b.dataset.v:b.dataset.v;prev()}}
-seg('fmt','fmt');seg('scale','scale',1);seg('rot','rot',1);
-['Photo_n','IMG_n','Pic-n','{d}_n','{o}_n','Trip_{d}_n'].forEach(p=>{const b=document.createElement('button');b.className='chip';b.textContent=p;b.onclick=()=>{$('pat').value=p;prev()};$('chips').appendChild(b)});
-$('q').oninput=()=>{$('qv').textContent=$('q').value};
-['pat','start','pad'].forEach(i=>$(i).oninput=prev);
+// ===== EDIT & EXPORT =====
+const O={out:'img',fmt:'png',scale:1,rot:0,fit:'crop',anch:'c',white:false,pgSize:'a4',pgOr:'auto',pgMar:0,ord:'sel',wm:'off',wmPos:'br'};
 const ext={png:'png',jpeg:'jpg',webp:'webp'};
-function name(it,idx){
+const fmtKB=n=>(n/1024).toFixed(n<10240?1:0)+' KB';
+const b64=b=>new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result.split(',')[1]);f.readAsDataURL(b)});
+const toBlob=(c,m,q)=>new Promise(r=>c.toBlob(r,m,q));
+const stamp=()=>{const d=new Date(),p=n=>String(n).padStart(2,'0');return d.getFullYear()+p(d.getMonth()+1)+p(d.getDate())+'_'+p(d.getHours())+p(d.getMinutes())};
+let manualIds=[],wmImg=null;
+function chips(id,key,num,after){$(id).onclick=e=>{const b=e.target.closest('button');if(!b)return;[...$(id).children].forEach(x=>x.classList.remove('active'));b.classList.add('active');O[key]=num?+b.dataset.v:b.dataset.v;if(after)after();prev()}}
+chips('fmt','fmt');chips('scale','scale',1);chips('rot','rot',1);chips('fit','fit');chips('anch','anch');
+chips('pgSize','pgSize');chips('pgOr','pgOr');chips('pgMar','pgMar',1);chips('wmPos','wmPos');chips('wmMode','wm');
+chips('outm','out',0,()=>{$('secPdf').style.display=O.out==='pdf'?'':'none';if(O.out==='pdf')$('secPdf').open=true;$('secFmt').style.display=O.out==='pdf'?'none':''});
+chips('ordr','ord',0,()=>renderOrd());
+$('white').onclick=()=>{O.white=!O.white;$('white').classList.toggle('active',O.white)};
+$('q').oninput=()=>{$('qv').textContent=$('q').value};
+$('wmSize').oninput=()=>{$('wsv').textContent=$('wmSize').value};
+$('wmOp').oninput=()=>{$('wov').textContent=$('wmOp').value};
+$('wmText').oninput=()=>{try{localStorage.setItem('ts_wm_text',$('wmText').value)}catch(e){}};
+try{$('wmText').value=localStorage.getItem('ts_wm_text')||''}catch(e){}
+$('wmPick').onclick=()=>$('wmFile').click();
+$('wmFile').onchange=async e=>{const f=e.target.files[0];if(f){try{wmImg=await createImageBitmap(f);O.wm='logo';[...$('wmMode').children].forEach(x=>x.classList.toggle('active',x.dataset.v==='logo'));toast(t('Logo ready'))}catch(x){toast(t('Could not read the logo'))}}e.target.value=''};
+$('tgt').onclick=e=>{const b=e.target.closest('button');if(!b)return;[...$('tgt').children].forEach(x=>x.classList.remove('active'));b.classList.add('active');$('kmax').value=+b.dataset.v||'';prev()};
+$('kmax').oninput=()=>{[...$('tgt').children].forEach(x=>x.classList.toggle('active',x.dataset.v===($('kmax').value||'0')));prev()};
+['kmin','pw','ph','pat','start','pad'].forEach(i=>$(i).oninput=prev);
+const PRE=[['Photo',200,230,20,50],['Signature',140,60,10,20],['Photo',275,354,20,50],['Thumb',240,240,20,50],['Passport',413,531,0,100],['Square',512,512,0,0]];
+const myPre=()=>{try{return JSON.parse(localStorage.getItem('ts_presets')||'[]')}catch(e){return[]}};
+function applyPre(p){$('pw').value=p[1];$('ph').value=p[2];$('kmin').value=p[3]||'';$('kmax').value=p[4]||'';O.white=true;$('white').classList.add('active');$('kmax').oninput()}
+function renderPre(){
+  const h=$('presets');h.innerHTML='';
+  PRE.forEach(p=>{const b=document.createElement('button');b.className='chip';b.textContent=t(p[0])+' '+p[1]+'×'+p[2];b.onclick=()=>applyPre(p);h.appendChild(b)});
+  myPre().forEach((p,i)=>{const b=document.createElement('button');b.className='chip';b.textContent=p[0]+' '+p[1]+'×'+p[2]+'  ';
+    const x=document.createElement('span');x.textContent='×';x.style.cssText='font-size:17px;line-height:1;padding:0 2px;color:var(--error)';
+    x.onclick=e=>{e.stopPropagation();const l=myPre();l.splice(i,1);try{localStorage.setItem('ts_presets',JSON.stringify(l))}catch(z){}renderPre()};
+    b.appendChild(x);b.onclick=()=>applyPre(p);h.appendChild(b)});
+}
+$('savePre').onclick=()=>{
+  const w=+$('pw').value,hh=+$('ph').value;if(!w||!hh){toast(t('Enter width and height first'));return}
+  const n=(prompt(t('Preset name'))||'').trim();if(!n)return;
+  const l=myPre();l.push([n,w,hh,+$('kmin').value||0,+$('kmax').value||0]);try{localStorage.setItem('ts_presets',JSON.stringify(l))}catch(e){}renderPre();toast(t('Preset saved'));
+};
+['Photo_n','IMG_n','Pic-n','{d}_n','{o}_n','Trip_{d}_n'].forEach(p=>{const b=document.createElement('button');b.className='chip';b.textContent=p;b.onclick=()=>{$('pat').value=p;prev()};$('chips').appendChild(b)});
+
+function ordered(){
+  const l=sel().slice();
+  if(O.ord==='custom'){const m=new Map(l.map(i=>[i.id,i])),r=manualIds.map(id=>m.get(id)).filter(Boolean);l.forEach(i=>{if(!manualIds.includes(i.id))r.push(i)});return r}
+  if(O.ord==='name')l.sort((a,b)=>a.name.localeCompare(b.name,undefined,{numeric:true}));
+  else if(O.ord==='date')l.sort((a,b)=>a.mtime-b.mtime);
+  else l.sort((a,b)=>(a.seq||0)-(b.seq||0));
+  return l;
+}
+function renderOrd(){
+  const l=ordered(),h=$('ordList');h.innerHTML='';
+  if(l.length>60){h.textContent=t('Reorder list is shown for up to 60 photos.');return}
+  l.forEach((it,i)=>{
+    const r=document.createElement('div');r.className='orow';
+    r.innerHTML='<img alt=""><span></span><button aria-label="Up">'+ic('up')+'</button><button aria-label="Down">'+ic('down')+'</button>';
+    r.querySelector('img').src=it.turl||it.t||it.url;r.querySelector('span').textContent=(i+1)+'. '+it.name;
+    const bs=r.querySelectorAll('button');bs[0].onclick=()=>mv(i,-1);bs[1].onclick=()=>mv(i,1);h.appendChild(r);
+  });
+}
+function mv(i,d){const l=ordered(),j=i+d;if(j<0||j>=l.length)return;[l[i],l[j]]=[l[j],l[i]];manualIds=l.map(x=>x.id);O.ord='custom';[...$('ordr').children].forEach(x=>x.classList.remove('active'));renderOrd();prev()}
+
+function opts(){
+  const o={...O,q:+$('q').value/100,pw:+$('pw').value||0,ph:+$('ph').value||0,kmax:+$('kmax').value||0,kmin:+$('kmin').value||0,wmText:$('wmText').value.trim(),wmSize:+$('wmSize').value,wmOp:+$('wmOp').value};
+  if(o.out==='pdf')o.fmt='jpeg';
+  if(o.kmax&&o.fmt==='png')o.fmt='jpeg';
+  return o;
+}
+function name(it,idx,o){
   const num=String(+$('start').value+idx).padStart(+$('pad').value,'0');
   const d=new Date().toISOString().slice(0,10).replace(/-/g,'');
   const nm=$('pat').value.split(/(\{o\}|\{d\})/).map(p=>p==='{o}'?base(it.name):p==='{d}'?d:p.replace(/n/g,num)).join('')
     .replace(/[\\/:*?"<>|]/g,'_').trim()||('image_'+num);
-  return nm+'.'+ext[opt.fmt];
+  return nm+'.'+ext[(o||opts()).fmt];
 }
-function prev(){const s=sel();$('cnt').textContent='· '+s.length+' selected';
-  $('prev').innerHTML='Preview<br>'+s.slice(0,4).map((it,i)=>name(it,i)).join('<br>')+(s.length>4?'<br>…':'')}
+function prev(){
+  const s=ordered(),o=opts();$('cnt').textContent='· '+t('{n} selected',{n:s.length});
+  $('prev').innerHTML=esc(t('Preview'))+'<br>'+(o.out==='img'?s.slice(0,4).map((it,i)=>esc(name(it,i,o))).join('<br>')+(s.length>4?'<br>…':''):esc(o.out==='pdf'?t('One PDF with {n} pages',{n:s.length}):t('One ZIP with {n} files',{n:s.length})));
+  $('pvOut').style.display='none';
+}
+function openSheet(){renderPre();renderOrd();prev()}
 $('close').onclick=()=>{$('sheet').classList.remove('on');restoreNav()};
-async function convert(it){
-  const bmp=await createImageBitmap(await blobOf(it));
-  const sw=Math.max(1,Math.round(bmp.width*opt.scale)),sh=Math.max(1,Math.round(bmp.height*opt.scale));
-  const sideways=opt.rot%180!==0,c=document.createElement('canvas');
-  c.width=sideways?sh:sw;c.height=sideways?sw:sh;
-  const x=c.getContext('2d');
-  if(opt.fmt==='jpeg'){x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height)}
-  x.translate(c.width/2,c.height/2);x.rotate(opt.rot*Math.PI/180);x.drawImage(bmp,-sw/2,-sh/2,sw,sh);
-  return new Promise(r=>c.toBlob(r,'image/'+opt.fmt,$('q').value/100));
+
+function drawWm(x,W,H,o){
+  const text=o.wm==='text'&&o.wmText,logo=o.wm==='logo'&&wmImg;
+  if(!text&&!logo)return;
+  const sz=Math.max(8,Math.min(W,H)*o.wmSize/100);
+  x.save();x.globalAlpha=o.wmOp/100;
+  let ww,wh;
+  if(text){x.font='700 '+sz+'px sans-serif';ww=x.measureText(o.wmText).width;wh=sz}else{ww=sz*3;wh=ww*wmImg.height/wmImg.width}
+  const put=(cx,cy)=>{if(text){x.textAlign='center';x.textBaseline='middle';x.lineWidth=Math.max(1,sz/8);x.strokeStyle='rgba(0,0,0,.6)';x.fillStyle='#fff';x.strokeText(o.wmText,cx,cy);x.fillText(o.wmText,cx,cy)}else x.drawImage(wmImg,cx-ww/2,cy-wh/2,ww,wh)};
+  const pad=sz*.6;
+  if(o.wmPos==='tile'){x.translate(W/2,H/2);x.rotate(-Math.PI/6);const sx=ww*1.8,sy=wh*3.2;for(let yy=-H;yy<=H;yy+=sy)for(let xx=-W;xx<=W;xx+=sx)put(xx,yy)}
+  else put(o.wmPos==='bl'?pad+ww/2:o.wmPos==='c'?W/2:W-pad-ww/2,o.wmPos==='c'?H/2:H-pad-wh/2);
+  x.restore();
 }
-const b64=b=>new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result.split(',')[1]);f.readAsDataURL(b)});
-async function run(share){
-  const s=sel();if(!s.length)return;
-  $('prog').style.display='block';const bar=$('prog').firstChild;const uris=[];let saved=0,fallback=false;
-  const FS=native&&cap.Plugins.Filesystem;
-  for(let i=0;i<s.length;i++){
-    const fn=name(s[i],i);
-    try{
-      const blob=await convert(s[i]);
-      if(native){
-        const data=await b64(blob);
-        if(share){const r=await FS.writeFile({path:fn,data,directory:'CACHE'});uris.push(r.uri)}
-        else{
-          try{await saveToAlbum(data,blob.type,fn);saved++}
-          catch(e){const r=await FS.writeFile({path:fn,data,directory:'CACHE'});uris.push(r.uri);fallback=true}
-        }
-      }else{
-        const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=fn;a.click();saved++;
-        await sleep(250);
-      }
-    }catch(e){toast('Failed: '+fn)}
-    bar.style.width=((i+1)/s.length*100)+'%';
+async function encodeTarget(c,mime,maxB,minB,allowScale){
+  let cv=c;
+  for(let pass=0;pass<10;pass++){
+    let lo=.08,hi=.95,best=null,b=await toBlob(cv,mime,hi);
+    if(b.size<=maxB)best=b;
+    else for(let i=0;i<7;i++){const mid=(lo+hi)/2;b=await toBlob(cv,mime,mid);if(b.size<=maxB){best=b;lo=mid}else hi=mid}
+    if(best){
+      if(minB&&best.size<minB&&mime==='image/jpeg')best=new Blob([best,new Uint8Array(minB-best.size)],{type:mime});
+      return{blob:best,w:cv.width,h:cv.height,ok:true};
+    }
+    if(!allowScale)break;
+    const n=document.createElement('canvas');n.width=Math.max(8,Math.round(cv.width*.85));n.height=Math.max(8,Math.round(cv.height*.85));n.getContext('2d').drawImage(cv,0,0,n.width,n.height);cv=n;
   }
-  if(native&&uris.length){try{await cap.Plugins.Share.share({title:'Converted images',files:uris})}catch(e){}}
-  $('prog').style.display='none';bar.style.width=0;$('sheet').classList.remove('on');restoreNav();
-  toast(share||fallback?'Choose where to save in the share sheet':`Saved ${saved} image(s)`+(native?' to the Image Studio folder':''));
-  if(native&&saved)loadGallery(true,true);
+  return{blob:await toBlob(cv,mime,.08),w:cv.width,h:cv.height,ok:false};
 }
-$('go').onclick=()=>run(false);
-$('goShare').onclick=()=>run(true);
+async function process1(it,o,budget){
+  const bmp=await createImageBitmap(await blobOf(it));
+  let src=bmp,sw=bmp.width,sh=bmp.height;
+  if(o.rot){const sd=o.rot%180!==0,c=document.createElement('canvas');c.width=sd?sh:sw;c.height=sd?sw:sh;const x=c.getContext('2d');x.translate(c.width/2,c.height/2);x.rotate(o.rot*Math.PI/180);x.drawImage(bmp,-sw/2,-sh/2);src=c;[sw,sh]=[c.width,c.height]}
+  const maxB=(budget||o.kmax*1024)||0,exact=o.pw&&o.ph;
+  let tw,th;
+  if(exact){tw=o.pw;th=o.ph}
+  else{let s=o.scale;if(maxB)s=Math.min(s,Math.sqrt((maxB/.3)/(sw*sh)));tw=Math.max(1,Math.round(sw*s));th=Math.max(1,Math.round(sh*s))}
+  const c=document.createElement('canvas');c.width=tw;c.height=th;const x=c.getContext('2d');
+  x.imageSmoothingQuality='high';
+  if(o.fmt==='jpeg'||o.white){x.fillStyle='#fff';x.fillRect(0,0,tw,th)}
+  if(exact){
+    let dw,dh;
+    if(o.fit==='stretch'){dw=tw;dh=th}
+    else{const k=o.fit==='fit'?Math.min(tw/sw,th/sh):Math.max(tw/sw,th/sh);dw=sw*k;dh=sh*k}
+    x.drawImage(src,(tw-dw)/2,o.fit==='crop'&&o.anch==='t'?(th-dh)*.2:(th-dh)/2,dw,dh);
+  }else x.drawImage(src,0,0,tw,th);
+  if(bmp.close)bmp.close();
+  drawWm(x,tw,th,o);
+  const mime='image/'+o.fmt;
+  if(maxB){return await encodeTarget(c,mime,maxB,o.kmin*1024,!exact)}
+  return{blob:await toBlob(c,mime,o.q),w:tw,h:th,ok:true};
+}
+
+// PDF writer (JPEG pages) and ZIP writer (no compression), no libraries needed
+function buildPDF(pages,o){
+  const enc=new TextEncoder(),chunks=[],off=[];let pos=0;
+  const add=d=>{const b=typeof d==='string'?enc.encode(d):d;chunks.push(b);pos+=b.length};
+  const obj=(id,s)=>{off[id]=pos;add(id+' 0 obj\n'+s+'\nendobj\n')};
+  add('%PDF-1.4\n');const n=pages.length;
+  obj(1,'<< /Type /Catalog /Pages 2 0 R >>');
+  obj(2,'<< /Type /Pages /Kids ['+pages.map((_,i)=>(3+i*3)+' 0 R').join(' ')+'] /Count '+n+' >>');
+  pages.forEach((p,i)=>{
+    const id=3+i*3,m=+o.pgMar;let pw,ph;
+    if(o.pgSize==='fit'){pw=p.w*.5+2*m;ph=p.h*.5+2*m}
+    else{pw=o.pgSize==='letter'?612:595;ph=o.pgSize==='letter'?792:842;const land=o.pgOr==='l'||(o.pgOr==='auto'&&p.w>p.h);if(land){const z=pw;pw=ph;ph=z}}
+    const sc=Math.min((pw-2*m)/p.w,(ph-2*m)/p.h),dw=p.w*sc,dh=p.h*sc,dx=(pw-dw)/2,dy=(ph-dh)/2;
+    const cs='q '+dw.toFixed(2)+' 0 0 '+dh.toFixed(2)+' '+dx.toFixed(2)+' '+dy.toFixed(2)+' cm /Im0 Do Q';
+    obj(id,'<< /Type /Page /Parent 2 0 R /MediaBox [0 0 '+pw.toFixed(2)+' '+ph.toFixed(2)+'] /Resources << /XObject << /Im0 '+(id+2)+' 0 R >> >> /Contents '+(id+1)+' 0 R >>');
+    obj(id+1,'<< /Length '+cs.length+' >>\nstream\n'+cs+'\nendstream');
+    off[id+2]=pos;add((id+2)+' 0 obj\n<< /Type /XObject /Subtype /Image /Width '+p.w+' /Height '+p.h+' /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length '+p.bytes.length+' >>\nstream\n');add(p.bytes);add('\nendstream\nendobj\n');
+  });
+  const total=3+n*3,xr=pos;let x='xref\n0 '+total+'\n0000000000 65535 f \n';
+  for(let i=1;i<total;i++)x+=String(off[i]).padStart(10,'0')+' 00000 n \n';
+  add(x+'trailer\n<< /Size '+total+' /Root 1 0 R >>\nstartxref\n'+xr+'\n%%EOF');
+  return new Blob(chunks,{type:'application/pdf'});
+}
+const CRCT=(()=>{const t=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
+const crc32=u=>{let c=0xFFFFFFFF;for(let i=0;i<u.length;i++)c=CRCT[(c^u[i])&255]^(c>>>8);return(c^0xFFFFFFFF)>>>0};
+function buildZip(files){
+  const enc=new TextEncoder(),parts=[],cen=[];let pos=0;
+  const d=new Date(),dt=((d.getFullYear()-1980)<<9)|((d.getMonth()+1)<<5)|d.getDate(),tm=(d.getHours()<<11)|(d.getMinutes()<<5)|(d.getSeconds()>>1);
+  files.forEach(f=>{
+    const nm=enc.encode(f.name),crc=crc32(f.data),sz=f.data.length;
+    const h=new DataView(new ArrayBuffer(30));h.setUint32(0,0x04034b50,true);h.setUint16(4,20,true);h.setUint16(6,0x0800,true);h.setUint16(10,tm,true);h.setUint16(12,dt,true);h.setUint32(14,crc,true);h.setUint32(18,sz,true);h.setUint32(22,sz,true);h.setUint16(26,nm.length,true);
+    parts.push(h.buffer,nm,f.data);
+    const c=new DataView(new ArrayBuffer(46));c.setUint32(0,0x02014b50,true);c.setUint16(4,20,true);c.setUint16(6,20,true);c.setUint16(8,0x0800,true);c.setUint16(12,tm,true);c.setUint16(14,dt,true);c.setUint32(16,crc,true);c.setUint32(20,sz,true);c.setUint32(24,sz,true);c.setUint16(28,nm.length,true);c.setUint32(42,pos,true);
+    cen.push(c.buffer,nm);pos+=30+nm.length+sz;
+  });
+  let cs=0;cen.forEach(b=>cs+=b.byteLength);
+  const e=new DataView(new ArrayBuffer(22));e.setUint32(0,0x06054b50,true);e.setUint16(8,files.length,true);e.setUint16(10,files.length,true);e.setUint32(12,cs,true);e.setUint32(16,pos,true);
+  return new Blob([...parts,...cen,e.buffer],{type:'application/zip'});
+}
+
+function dl(blob,fn){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=fn;a.click()}
+async function deliverDoc(blob,fn,mime){
+  if(!native){dl(blob,fn);return}
+  const data=await b64(blob);
+  const w=await FSP.writeFile({path:fn,data,directory:'CACHE'});
+  try{await saveToAlbum(data,mime,fn)}catch(e){}
+  try{await cap.Plugins.Share.share({title:fn,files:[w.uri]})}catch(e){}
+}
+async function exportRun(share){
+  const its=ordered();if(!its.length){toast(t('Select some images first'));return}
+  const o=opts();
+  $('prog').style.display='block';const bar=$('prog').firstChild;bar.style.width='0';
+  let fails=0,total=0,msg='';
+  try{
+    if(o.out==='img'){
+      const uris=[];let saved=0,fallback=false;
+      for(let i=0;i<its.length;i++){
+        const fn=name(its[i],i,o);
+        try{
+          const r=await process1(its[i],o);total+=r.blob.size;if(!r.ok)fails++;
+          if(native){
+            const data=await b64(r.blob);
+            if(share){const w=await FSP.writeFile({path:fn,data,directory:'CACHE'});uris.push(w.uri)}
+            else{try{await saveToAlbum(data,r.blob.type,fn);saved++}catch(e){const w=await FSP.writeFile({path:fn,data,directory:'CACHE'});uris.push(w.uri);fallback=true}}
+          }else{dl(r.blob,fn);saved++;await sleep(250)}
+        }catch(e){toast(t('Failed')+': '+fn)}
+        bar.style.width=((i+1)/its.length*100)+'%';
+      }
+      if(native&&uris.length){try{await cap.Plugins.Share.share({title:'Image Studio',files:uris})}catch(e){}}
+      msg=share||fallback?t('Choose where to save in the share sheet'):t('Saved {n} image(s) · {s}',{n:saved,s:fmtKB(total)})+(native?' · '+t('folder: Image Studio'):'');
+      if(native&&saved)loadGallery(true,true);
+    }else{
+      const rs=[],per=(o.out==='pdf'&&o.kmax)?o.kmax*1024*.92/its.length:0;
+      for(let i=0;i<its.length;i++){const r=await process1(its[i],o,per);if(!r.ok)fails++;rs.push({r,fn:name(its[i],i,o)});bar.style.width=((i+1)/its.length*90)+'%'}
+      let blob,fn,mime;
+      if(o.out==='pdf'){
+        const pages=[];for(const x of rs)pages.push({bytes:new Uint8Array(await x.r.blob.arrayBuffer()),w:x.r.w,h:x.r.h});
+        blob=buildPDF(pages,o);fn='ImageStudio_'+stamp()+'.pdf';mime='application/pdf';
+      }else{
+        const files=[],seen=new Set();
+        for(let i=0;i<rs.length;i++){let nm=rs[i].fn;if(seen.has(nm))nm=nm.replace(/(\.[^.]+)$/,'_'+(i+1)+'$1');seen.add(nm);files.push({name:nm,data:new Uint8Array(await rs[i].r.blob.arrayBuffer())})}
+        blob=buildZip(files);fn='ImageStudio_'+stamp()+'.zip';mime='application/zip';
+      }
+      await deliverDoc(blob,fn,mime);
+      msg=t('Created {f} ({s})',{f:fn,s:fmtKB(blob.size)});
+    }
+    if(fails)msg+=' · '+t('{n} could not reach the target size',{n:fails});
+    toast(msg);
+  }catch(e){toast(t('Failed')+': '+(e.message||e))}
+  $('prog').style.display='none';bar.style.width=0;$('sheet').classList.remove('on');restoreNav();
+}
+$('go').onclick=()=>exportRun(false);
+$('goShare').onclick=()=>exportRun(true);
+$('goPrev').onclick=async()=>{
+  const its=ordered();if(!its.length){toast(t('Select some images first'));return}
+  const o=opts();if(o.out!=='img')o.fmt='jpeg';
+  $('pvTxt').textContent=t('Working…');$('pvOut').style.display='flex';
+  try{
+    const r=await process1(its[0],o);
+    $('pvImg').src=URL.createObjectURL(r.blob);
+    $('pvTxt').textContent=r.w+'×'+r.h+' px · '+fmtKB(r.blob.size)+(r.ok?'':' · '+t('target not reached'));
+  }catch(e){$('pvTxt').textContent=t('Failed')+': '+(e.message||e)}
+};
 
 // ===== AI SORT =====
 const DEF_CATS='Selfies,People,Food,Travel,Nature,Pets,Screenshots,Documents,Memes,Outfits,Other';
 const cfg=()=>{try{return JSON.parse(localStorage.getItem('cfg'))||{}}catch(e){return{}}};
-let st={list:[],pts:[],busy:false,done:false,folders:{},labels:{}};
+const saveCfg=o=>{try{localStorage.setItem('cfg',JSON.stringify(o))}catch(e){}};
+function catList(){const l=(cfg().cats||DEF_CATS).split(',').map(s=>s.trim()).filter(Boolean);if(!l.includes('Other'))l.push('Other');return l}
+let st={list:[],pts:[],busy:false,done:false,folders:{},labels:{},spin:0,raf:0,pos:[],dupGroups:[]};
 const TINTS=['purple','blue','green','pink','orange','teal','lime','cyan','yellow'];
 const TMAP={selfie:'pink',people:'purple',food:'orange',travel:'blue',nature:'green',green:'green',pet:'yellow',screenshot:'cyan',document:'teal',meme:'lime',outfit:'pink',duplicate:'red',dark:'purple',bright:'yellow',warm:'orange',sky:'blue'};
 function tintOf(l,i){const k=l.toLowerCase();for(const m in TMAP)if(k.includes(m))return TMAP[m];return TINTS[i%TINTS.length]}
+const LBL='ts_labels';let lmem={};try{lmem=JSON.parse(localStorage.getItem(LBL)||'{}')}catch(e){}
+const lkey=it=>it.path||(it.name+'|'+it.size);
+const lsave=()=>{try{const k=Object.keys(lmem);if(k.length>20000)k.slice(0,5000).forEach(x=>delete lmem[x]);localStorage.setItem(LBL,JSON.stringify(lmem))}catch(e){}};
+const pc=v=>{v=v-((v>>>1)&0x55555555);v=(v&0x33333333)+((v>>>2)&0x33333333);return(((v+(v>>>4))&0x0F0F0F0F)*0x01010101)>>>24};
+const ham=(a,b)=>{let n=0;for(let i=0;i<8;i++)n+=pc((a[i]^b[i])>>>0);return n};
 
+async function thumbBlob(it,size,square){
+  if(MT&&it.path){try{const r=await MT.getThumbs({paths:[it.path],size,square});if(r.thumbs[0])return await (await fetch(cap.convertFileSrc('file://'+r.thumbs[0]))).blob()}catch(e){}}
+  return null;
+}
 async function prep(it){
-  if(it.t)return;
-  const b=await createImageBitmap(await blobOf(it));it.w=b.width;it.h=b.height;
+  if(it.hb)return;
+  const blob=(await thumbBlob(it,256,false))||await blobOf(it);
+  const b=await createImageBitmap(blob);it.w=b.width;it.h=b.height;
   const c=document.createElement('canvas');c.width=c.height=96;const x=c.getContext('2d');
   const k=Math.max(96/b.width,96/b.height);x.drawImage(b,(96-b.width*k)/2,(96-b.height*k)/2,b.width*k,b.height*k);
-  const h=document.createElement('canvas');h.width=h.height=8;const hx=h.getContext('2d');hx.drawImage(b,0,0,8,8);
-  const d=hx.getImageData(0,0,8,8).data;const g=[];let r=0,gg=0,bb=0;
-  for(let i=0;i<64;i++){const R=d[i*4],G=d[i*4+1],B=d[i*4+2];r+=R;gg+=G;bb+=B;g.push(.3*R+.59*G+.11*B)}
-  const m=g.reduce((a,v)=>a+v,0)/64;
-  it.hash=g.map(v=>v>m?1:0).join('');it.avg=[r/64,gg/64,bb/64];it.t=c.toDataURL('image/jpeg',.7);
+  const h=document.createElement('canvas');h.width=h.height=16;const hx=h.getContext('2d');hx.drawImage(b,0,0,16,16);
+  const d=hx.getImageData(0,0,16,16).data,g=[];let r=0,gg=0,bb=0;
+  for(let i=0;i<256;i++){const R=d[i*4],G=d[i*4+1],B=d[i*4+2];r+=R;gg+=G;bb+=B;g.push(.3*R+.59*G+.11*B)}
+  const m=g.reduce((a,v)=>a+v,0)/256,hb=new Uint32Array(8);
+  for(let i=0;i<256;i++)if(g[i]>m)hb[i>>5]|=(1<<(i&31));
+  it.avg=[r/256,gg/256,bb/256];it.t=c.toDataURL('image/jpeg',.7);it.hb=hb;
   if(b.close)b.close();
 }
 async function apiImg(it){
+  const tb=await thumbBlob(it,384,false);if(tb)return b64(tb);
   const b=await createImageBitmap(await blobOf(it));const k=Math.min(1,384/Math.max(b.width,b.height));
   const c=document.createElement('canvas');c.width=Math.round(b.width*k);c.height=Math.round(b.height*k);
   c.getContext('2d').drawImage(b,0,0,c.width,c.height);if(b.close)b.close();
@@ -668,24 +999,34 @@ function rules(it){
   if(br>190)return 'Bright / Documents';
   return 'Other';
 }
-const ham=(a,b)=>{let n=0;for(let i=0;i<a.length;i++)if(a[i]!==b[i])n++;return n};
+function findDups(list){
+  const bk=new Map();
+  list.forEach(it=>{if(!it.hb||!it.w||!it.h)return;const k=Math.round(it.w/it.h*20);if(!bk.has(k))bk.set(k,[]);bk.get(k).push(it)});
+  const groups=[];
+  bk.forEach(b=>{
+    b.sort((x,y)=>x.mtime-y.mtime);const used=new Set();
+    for(let i=0;i<b.length;i++){if(used.has(i))continue;const g=[];
+      for(let j=i+1;j<b.length;j++){if(used.has(j))continue;if(ham(b[i].hb,b[j].hb)<=10){g.push(b[j]);used.add(j)}}
+      if(g.length)groups.push([b[i],g]);}
+  });
+  return groups;
+}
 async function ask(prov,imgs,cats){
   const c=cfg(),n=imgs.length;
   const prompt=`You are sorting phone photos into folders. Categories: ${cats.join(', ')}. For each of the ${n} images, in order, choose exactly one category from that list. Reply ONLY with JSON: {"labels":["..."]} containing exactly ${n} items.`;
-  for(let t=0;t<4;t++){
+  for(let k=0;k<4;k++){
     let res;
     if(prov==='groq'){
       res=await fetch('https://api.groq.com/openai/v1/chat/completions',{method:'POST',
         headers:{'Content-Type':'application/json','Authorization':'Bearer '+c.groqKey},
-        body:JSON.stringify({model:c.groqModel||'meta-llama/llama-4-scout-17b-16e-instruct',temperature:0,
-          response_format:{type:'json_object'},
+        body:JSON.stringify({model:c.groqModel||'meta-llama/llama-4-scout-17b-16e-instruct',temperature:0,response_format:{type:'json_object'},
           messages:[{role:'user',content:[{type:'text',text:prompt},...imgs.map(b=>({type:'image_url',image_url:{url:'data:image/jpeg;base64,'+b}}))]}]})});
     }else{
       res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${c.geminiModel||'gemini-2.5-flash'}:generateContent?key=${c.geminiKey}`,{method:'POST',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify({contents:[{parts:[{text:prompt},...imgs.map(b=>({inline_data:{mime_type:'image/jpeg',data:b}}))]}],generationConfig:{response_mime_type:'application/json'}})});
     }
-    if(res.status===429){await sleep(5000*(t+1));continue}
+    if(res.status===429){await sleep(5000*(k+1));continue}
     if(!res.ok)throw new Error(prov+' '+res.status+': '+(await res.text()).slice(0,100));
     const j=await res.json();
     const txt=prov==='groq'?j.choices[0].message.content:j.candidates[0].content.parts[0].text;
@@ -694,108 +1035,256 @@ async function ask(prov,imgs,cats){
   throw new Error('Rate limited, try again in a minute');
 }
 async function classify(list,prov,cats,prog){
-  const out={};let errs=0,lastErr='';
-  if(prov==='rules'){list.forEach(it=>out[it.id]=rules(it));return{out,errs,lastErr}}
+  const out={};let errs=0,lastErr='',known=0;
+  if(prov==='rules'){list.forEach(it=>out[it.id]=rules(it));return{out,errs,lastErr,known}}
+  const low=cats.map(c=>c.toLowerCase()),todo=[];
+  list.forEach(it=>{const m=lmem[lkey(it)],i=m?low.indexOf(m.toLowerCase()):-1;if(i>=0){out[it.id]=cats[i];known++}else todo.push(it)});
+  let done=known;prog(done,known);
   const per=prov==='groq'?5:10;
-  for(let i=0;i<list.length;i+=per){
-    const chunk=list.slice(i,i+per);
+  for(let i=0;i<todo.length;i+=per){
+    const chunk=todo.slice(i,i+per);
     try{
-      const imgs=await Promise.all(chunk.map(apiImg));const labs=await ask(prov,imgs,cats);
-      chunk.forEach((it,k)=>{out[it.id]=cats.find(c=>c.toLowerCase()===String(labs[k]).trim().toLowerCase())||'Other'});
+      const imgs=await Promise.all(chunk.map(apiImg)),labs=await ask(prov,imgs,cats);
+      chunk.forEach((it,k)=>{const lab=cats.find(c=>c.toLowerCase()===String(labs[k]).trim().toLowerCase())||'Other';out[it.id]=lab;lmem[lkey(it)]=lab});
     }catch(e){errs++;lastErr=e.message;chunk.forEach(it=>out[it.id]=rules(it))}
-    prog(Math.min(i+per,list.length));
+    done+=chunk.length;prog(done,known);lsave();
     if(prov==='groq')await sleep(2200);
   }
-  return{out,errs,lastErr};
+  return{out,errs,lastErr,known};
 }
-function sortBtn(done){$('sortGo').innerHTML=done?ic('replay')+'Replay':ic('sparkle')+'Sort'}
+
+function setCols(n){$('folders').style.setProperty('--cols',n<=4?2:n<=9?3:4);$('folders').classList.toggle('dense',n>9)}
+function folderEl(lab,idx,ph){
+  const k=tintOf(lab,idx),el=document.createElement('div');el.className='fo'+(ph?' ph':'');
+  el.style.setProperty('--tb','var(--'+k+')');el.style.setProperty('--ti','var(--'+k+'-ink)');
+  el.innerHTML=`<div class="fo-h"><span class="fo-ico">${ic(lab==='Duplicates'?'copy':'folder')}</span><b class="fo-n">0</b></div><div class="fo-name"></div><div class="st"></div>`;
+  el.querySelector('.fo-name').textContent=lab==='Duplicates'?t('Duplicates'):lab;
+  return el;
+}
+function regFolder(lab,el){st.folders[lab]={el,cnt:0,b:el.querySelector('.fo-n'),stEl:el.querySelector('.st')}}
+function showPlaceholders(){
+  const host=$('folders');host.innerHTML='';st.folders={};
+  if((cfg().prov||'groq')==='rules'){const p=document.createElement('p');p.className='hint';p.style.cssText='grid-column:1/-1;text-align:center';p.textContent=t('Offline mode makes folders from colour and shape. They appear here after sorting.');host.appendChild(p);setCols(1);return}
+  const cats=catList();setCols(cats.length+1);
+  cats.forEach((lab,i)=>{const el=folderEl(lab,i,true);host.appendChild(el);regFolder(lab,el);el.onclick=addFolderHint});
+  const add=document.createElement('div');add.className='fo add';add.innerHTML='<div>'+ic('plus')+'</div><div class="fo-name"></div>';add.lastChild.textContent=t('Add folder');add.onclick=addFolder;host.appendChild(add);
+}
+const addFolderHint=()=>{};
+function addFolder(){
+  if(st.done||st.busy){toast(t('Tap Replay first'));return}
+  const n=(prompt(t('Folder name'))||'').trim();if(!n)return;
+  const c=cfg(),l=catList().filter(x=>x!=='Other');if(!l.includes(n))l.push(n);l.push('Other');c.cats=l.join(',');saveCfg(c);showPlaceholders();
+}
+function layoutRing(){
+  const r=$('pile').getBoundingClientRect();st.cx=r.left+r.width/2;st.cy=r.top+r.height/2;
+  const R=Math.max(50,Math.min(r.width,r.height)/2-22),n=st.list.length,rings=n>90?3:n>30?2:1;
+  const radii=[R,R*.76,R*.52].slice(0,rings),tot=radii.reduce((a,b)=>a+b,0);let idx=0;st.pos=[];
+  radii.forEach((rad,ri)=>{const cnt=ri===rings-1?n-idx:Math.round(n*rad/tot);for(let k=0;k<cnt;k++)st.pos[idx++]={r:rad*(.94+Math.random()*.12),a:k/cnt*Math.PI*2+ri*.5,j:(Math.random()-.5)*50,dir:ri%2?-1:1}});
+}
+function frame(ts){
+  const tt=ts/1000;
+  for(let i=0;i<st.pts.length;i++){const p=st.pos[i],pt=st.pts[i];if(!p||!pt)continue;const a=p.a+p.dir*tt*.12;
+    pt.style.transform='translate('+(st.cx+p.r*Math.cos(a)-17)+'px,'+(st.cy+p.r*Math.sin(a)-17)+'px) rotate('+(a*57.3+90+p.j)+'deg)'}
+  if(st.spin)st.raf=requestAnimationFrame(frame);
+}
+function sortBtn(){$('sortGo').innerHTML=st.done?ic('folder')+esc(t('Create folders')):ic('sparkle')+esc(t('Sort'));$('sortReplay').style.display=st.done?'':'none'}
 function buildPile(){
-  st.pts.forEach(p=>p.remove());st.pts=[];st.done=false;st.folders={};st.labels={};$('folders').innerHTML='';
-  const r=$('pile').getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
-  const R=Math.max(40,Math.min(r.width,r.height)/2-26);
-  st.list.forEach((it,i)=>{
-    const p=document.createElement('img');p.className='pt';p.src=it.t;p.alt='';
-    const a=i*2.39996,rad=R*(.7+.3*((i*.618)%1));
-    p.style.transform=`translate(${cx+rad*Math.cos(a)-19}px,${cy+rad*Math.sin(a)-19}px) rotate(${(i*37)%60-30}deg)`;
-    $('stage').appendChild(p);st.pts.push(p);
-  });
+  cancelAnimationFrame(st.raf);st.pts.forEach(p=>p.remove());st.pts=[];st.done=false;st.busy=false;st.labels={};
+  $('stage').classList.remove('sorted');layoutRing();
+  st.list.forEach(it=>{const p=document.createElement('img');p.className='pt spin';p.src=it.t;p.alt='';$('stage').appendChild(p);st.pts.push(p)});
   $('s1').textContent=st.list.length;$('s2').textContent=0;$('s3').textContent=0;
-  $('stinfo').textContent='Ready. Tap Sort and watch them fly into folders.';
-  $('sortGo').disabled=false;sortBtn(false);
+  $('pileTxt').innerHTML='<b>'+st.list.length+'</b><span>'+esc(t('photos'))+'</span>';
+  $('stinfo').textContent=t('Ready. Tap Sort and watch them fly into folders.');
+  showPlaceholders();$('sortGo').disabled=false;sortBtn();
+  st.spin=1;st.raf=requestAnimationFrame(frame);
 }
 async function openStage(){
-  const all=sel().length?sel():glist;const scope=all.slice(0,200);if(all.length>200)toast('Sorting the 200 newest photos here. Select photos to choose your own.');
-  if(!scope.length){toast('Add some images first');setNav('home');return}
-  setNav('ai');$('stage').classList.add('on');$('stinfo').textContent='Preparing…';$('sortGo').disabled=true;sortBtn(false);
-  st.list=scope;
-  for(const it of scope){try{await prep(it)}catch(e){it.t=it.url;it.hash='';it.avg=[128,128,128]}}
+  const all=sel().length?sel():glist,scope=all.slice(0,200);
+  if(!scope.length){toast(t('Add some images first'));setNav('home');return}
+  if(all.length>200)toast(t('Sorting the 200 newest photos here. Select photos to choose your own.'));
+  setNav('ai');$('stage').classList.add('on');$('sortGo').disabled=true;st.list=scope;
+  $('stinfo').textContent=t('Preparing…');
+  for(let i=0;i<scope.length;i+=6){
+    await Promise.all(scope.slice(i,i+6).map(it=>prep(it).catch(()=>{it.t=it.url;it.hb=null;it.avg=[128,128,128]})));
+    $('stinfo').textContent=t('Preparing {n} of {m}…',{n:Math.min(i+6,scope.length),m:scope.length});
+  }
   buildPile();
 }
 async function startSort(){
   if(st.busy)return;const c=cfg(),prov=c.prov||'groq';
-  if((prov==='groq'&&!c.groqKey)||(prov==='gemini'&&!c.geminiKey)){toast('Add your API key in settings');fillSet();$('setp').classList.add('on');return}
-  st.busy=true;$('sortGo').disabled=true;
-  const cats=(c.cats||DEF_CATS).split(',').map(s=>s.trim()).filter(Boolean);
-  if(!cats.includes('Other'))cats.push('Other');
+  if((prov==='groq'&&!c.groqKey)||(prov==='gemini'&&!c.geminiKey)){toast(t('Add your API key in settings'));fillSet();$('setp').classList.add('on');return}
+  st.busy=true;$('sortGo').disabled=true;st.spin=0;cancelAnimationFrame(st.raf);
+  const cats=catList();
   $('sprog').style.display='block';const pb0=$('sprog').firstChild;pb0.style.width='0';
-  const {out,errs,lastErr}=await classify(st.list,prov,cats,n=>{$('stinfo').textContent=`Analysing ${n} of ${st.list.length}…`;pb0.style.width=(n/st.list.length*100)+'%'});
+  const {out,errs,lastErr,known}=await classify(st.list,prov,cats,(n,k)=>{$('stinfo').textContent=t('Analysing {n} of {m}…',{n,m:st.list.length})+(k?' · '+t('{n} remembered',{n:k}):'');pb0.style.width=(n/st.list.length*100)+'%'});
   $('sprog').style.display='none';
-  const seen=[];let dup=0;
-  st.list.forEach(it=>{if(!it.hash)return;
-    if(seen.some(o=>Math.abs(o.w/o.h-it.w/it.h)<.02&&ham(o.hash,it.hash)<=2)){out[it.id]='Duplicates';dup++}else seen.push(it)});
+  const groups=findDups(st.list);let dup=0;groups.forEach(([o,g])=>g.forEach(d=>{out[d.id]='Duplicates';dup++}));
+  st.dupGroups=groups;
+  let cnt={};st.list.forEach(i=>cnt[out[i.id]]=(cnt[out[i.id]]||0)+1);
+  const rank=l=>l.sort((a,b)=>(a==='Duplicates')-(b==='Duplicates')||cnt[b]-cnt[a]);
+  let names=rank(Object.keys(cnt));
+  if(names.length>12){const keep=new Set(names.slice(0,11));st.list.forEach(i=>{if(!keep.has(out[i.id])&&out[i.id]!=='Duplicates')out[i.id]='Other'});cnt={};st.list.forEach(i=>cnt[out[i.id]]=(cnt[out[i.id]]||0)+1);names=rank(Object.keys(cnt))}
   st.labels=out;
-  const groups={};st.list.forEach(it=>(groups[out[it.id]]=groups[out[it.id]]||[]).push(it));
-  const names=Object.keys(groups).sort((a,b)=>(a==='Duplicates')-(b==='Duplicates')||groups[b].length-groups[a].length);
-  $('folders').innerHTML='';st.folders={};
-  names.forEach((lab,idx)=>{
-    const k=tintOf(lab,idx);
-    const el=document.createElement('div');el.className='fo';el.style.setProperty('--tb','var(--'+k+')');el.style.setProperty('--ti','var(--'+k+'-ink)');
-    el.innerHTML=`<div class="fo-h"><span class="fo-ico">${ic(lab==='Duplicates'?'copy':'folder')}</span><span class="fo-name"></span><b class="fo-n">0</b></div><div class="st"></div>`;
-    el.querySelector('.fo-name').textContent=lab;
-    el.onclick=()=>openFolder(lab);$('folders').appendChild(el);
-    st.folders[lab]={el,cnt:0,b:el.querySelector('.fo-n'),stEl:el.querySelector('.st')};
-  });
-  $('s2').textContent=names.length;$('s3').textContent=dup;
-  $('stinfo').textContent='Sorting…';
+  const host=$('folders');host.innerHTML='';st.folders={};setCols(names.length);
+  names.forEach((lab,idx)=>{const el=folderEl(lab,idx,false);el.onclick=()=>openFolder(lab);host.appendChild(el);regFolder(lab,el)});
+  $('s2').textContent=names.length;$('s3').textContent=dup;$('stinfo').textContent=t('Sorting…');$('pileTxt').innerHTML='';
   await sleep(80);
   const pb=$('pile').getBoundingClientRect().bottom;let maxD=0;
   st.list.forEach((it,i)=>{
-    const f=st.folders[out[it.id]],fr=f.el.getBoundingClientRect();
-    const tx=Math.min(innerWidth-40,Math.max(0,fr.left+fr.width/2-19+Math.random()*30-15));
-    const ty=Math.min(innerHeight-70,Math.max(pb,fr.top+fr.height/2-19+Math.random()*16-8));
-    const p=st.pts[i],d=Math.min(i*22,2400);maxD=Math.max(maxD,d);
-    p.style.transitionDelay=d+'ms';p.style.transform=`translate(${tx}px,${ty}px) scale(.7)`;
+    const f=st.folders[out[it.id]],fr=f.el.getBoundingClientRect(),p=st.pts[i];
+    const tx=Math.min(innerWidth-30,Math.max(0,fr.left+fr.width/2-17+Math.random()*24-12));
+    const ty=Math.min(innerHeight-60,Math.max(pb,fr.top+fr.height/2-17+Math.random()*12-6));
+    const d=Math.min(i*18,2200);maxD=Math.max(maxD,d);
+    p.classList.remove('spin');p.style.transitionDelay=d+'ms';p.style.transform='translate('+tx+'px,'+ty+'px) scale(.5)';
     setTimeout(()=>{p.style.transitionDelay='0ms';p.style.opacity=0;f.cnt++;f.b.textContent=f.cnt;
       f.el.classList.remove('bump');void f.el.offsetWidth;f.el.classList.add('bump');
-      if(f.cnt<=8){const im=document.createElement('img');im.src=it.t;im.alt='';f.stEl.appendChild(im)}},d+950);
+      if(f.cnt<=4){const im=document.createElement('img');im.src=it.t;im.alt='';f.stEl.appendChild(im)}},d+950);
   });
   await sleep(maxD+1200);
-  st.busy=false;st.done=true;$('sortGo').disabled=false;sortBtn(true);
-  $('stinfo').textContent='Done. Tap a folder to open it.';
-  if(errs)toast(errs+' batch(es) failed ('+lastErr+'). Offline rules were used for those.');
+  $('stage').classList.add('sorted');
+  st.busy=false;st.done=true;$('sortGo').disabled=false;sortBtn();
+  $('stinfo').textContent=t('Done. Tap a folder to open it, or create the folders in your gallery.');
+  if(errs)toast(t('{n} batch(es) failed',{n:errs})+' ('+lastErr+'). '+t('Offline rules were used for those.'));
 }
 function openFolder(lab){
   const l=st.list.filter(it=>st.labels[it.id]===lab);
-  $('ftitle').textContent=lab+' ('+l.length+')';$('fgrid').innerHTML='';
+  $('ftitle').textContent=(lab==='Duplicates'?t('Duplicates'):lab)+' ('+l.length+')';$('fgrid').innerHTML='';
   l.forEach(it=>{const im=document.createElement('img');im.src=it.t;im.alt='';im.style.cssText='width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;box-shadow:var(--e-sm)';$('fgrid').appendChild(im)});
-  $('fsel').onclick=()=>{items.forEach(i=>i.sel=false);l.forEach(i=>i.sel=true);$('fold').classList.remove('on');closeAll();paintAll();toast(l.length+' selected. Open Convert to rename them.')};
+  $('fsel').onclick=()=>{items.forEach(i=>i.sel=false);l.forEach(i=>setSel(i,true));$('fold').classList.remove('on');closeAll();paintAll();toast(t('{n} selected. Open Convert to rename them.',{n:l.length}))};
+  $('fdup').style.display=lab==='Duplicates'&&st.dupGroups.length?'':'none';
+  $('fdup').onclick=()=>{$('fold').classList.remove('on');openDups(st.dupGroups)};
   $('fold').classList.add('on');
 }
-function closeStage(){st.pts.forEach(p=>p.remove());st.pts=[];$('stage').classList.remove('on')}
+function closeStage(){st.spin=0;cancelAnimationFrame(st.raf);st.pts.forEach(p=>p.remove());st.pts=[];$('stage').classList.remove('on')}
 $('sback').onclick=()=>closeAll();
 $('fx').onclick=()=>$('fold').classList.remove('on');
-$('sortGo').onclick=()=>{if(st.done)buildPile();else startSort()};
+$('sortGo').onclick=()=>{if(st.done)saveFolders();else startSort()};
+$('sortReplay').onclick=buildPile;
 
-// sort settings
+async function saveFolders(){
+  if(!native||!Media){toast(t('Works in the installed app only'));return}
+  const labs=Object.keys(st.folders).filter(l=>st.folders[l].cnt>0&&l!=='Duplicates');
+  const total=labs.reduce((a,l)=>a+st.list.filter(i=>st.labels[i.id]===l&&i.path).length,0);
+  if(!total){toast(t('Nothing to copy'));return}
+  if(!confirm(t('Copy {n} photos into {m} gallery folders? Your originals stay where they are.',{n:total,m:labs.length})))return;
+  $('sortGo').disabled=true;$('sprog').style.display='block';const bar=$('sprog').firstChild;let done=0,fail=0;
+  try{
+    const base0=(await Media.getAlbumsPath()).path;
+    for(const lab of labs){
+      const an='Sorted-'+lab.replace(/[\\/:*?"<>|]/g,'_').trim(),used=new Set();
+      try{await Media.createAlbum({name:an})}catch(e){}
+      for(const it of st.list.filter(i=>st.labels[i.id]===lab&&i.path)){
+        let fnm=it.name.replace(/\.[^.]+$/,'');if(used.has(fnm))fnm+='_'+it.id;used.add(fnm);
+        try{await Media.savePhoto({path:encPath(it.path),albumIdentifier:base0+'/'+an,fileName:fnm})}catch(e){fail++}
+        done++;bar.style.width=(done/total*100)+'%';$('stinfo').textContent=t('Copying {n} of {m}…',{n:done,m:total});
+      }
+    }
+  }catch(e){toast(t('Failed')+': '+(e.message||e))}
+  $('sprog').style.display='none';bar.style.width=0;$('sortGo').disabled=false;
+  $('stinfo').textContent=t('Done. Tap a folder to open it, or create the folders in your gallery.');
+  toast(t('Copied {n} photos into {m} folders named Sorted-…',{n:done-fail,m:labs.length}));
+  loadGallery(true,true);
+}
+
+// ===== DUPLICATES CLEANER =====
+let dupSel=new Set(),dupItems=new Map();
+const updDup=()=>{$('dupDel').textContent=t('Delete selected ({n})',{n:dupSel.size});$('dupDel').disabled=!dupSel.size};
+function openDups(groups){
+  dupSel=new Set();dupItems=new Map();const h=$('dupList');h.innerHTML='';
+  if(!groups.length)h.textContent=t('No duplicates found');
+  groups.slice(0,150).forEach(([o,g])=>{
+    const row=document.createElement('div');row.className='drow';
+    const k=document.createElement('div');k.className='dkeep';k.innerHTML='<img alt=""><div></div>';k.querySelector('img').src=o.turl||o.t||o.url;k.lastChild.textContent=t('Keep');row.appendChild(k);
+    const ds=document.createElement('div');ds.className='dups';
+    g.forEach(d=>{dupSel.add(d.id);dupItems.set(d.id,d);const x=document.createElement('div');x.className='dth on';x.innerHTML='<img alt="">';x.firstChild.src=d.turl||d.t||d.url;
+      x.onclick=()=>{if(dupSel.has(d.id)){dupSel.delete(d.id);x.classList.remove('on')}else{dupSel.add(d.id);x.classList.add('on')}updDup()};ds.appendChild(x)});
+    row.appendChild(ds);h.appendChild(row);
+  });
+  $('dupN').textContent='· '+groups.reduce((a,g)=>a+g[1].length,0);
+  updDup();$('dups').classList.add('on');
+}
+$('dupX').onclick=()=>$('dups').classList.remove('on');
+$('dupDel').onclick=async()=>{
+  const del=[...dupSel].map(id=>dupItems.get(id)).filter(i=>i&&i.path);if(!del.length)return;
+  if(!confirm(t('Delete {n} duplicate photos? This cannot be undone.',{n:del.length})))return;
+  let n=0;
+  try{
+    if(MT){const r=await MT.deleteFiles({paths:del.map(i=>i.path)});n=r.deleted||0}
+    else if(FSP){for(const it of del){try{await FSP.deleteFile({path:encPath(it.path)});n++}catch(e){}}}
+  }catch(e){toast(t('Failed')+': '+(e.message||e))}
+  if(n){const ps=new Set(del.map(i=>i.path));items=items.filter(i=>!ps.has(i.path));$('dups').classList.remove('on');closeAll();loadGallery(true,true);toast(t('Deleted {n} photos',{n}))}
+  else toast(t('Nothing was deleted'));
+};
+$('dupBtn').onclick=async()=>{
+  const list=glist.slice(0,2000);if(list.length<2){toast(t('Not enough photos'));return}
+  const tp=$('topProg');tp.style.display='block';const bar=tp.firstChild;let failed=0;
+  for(let i=0;i<list.length;i+=6){
+    await Promise.all(list.slice(i,i+6).map(it=>prep(it).catch(()=>{failed++})));
+    bar.style.width=(Math.min(i+6,list.length)/list.length*100)+'%';
+  }
+  tp.style.display='none';bar.style.width=0;
+  const g=findDups(list);
+  if(!g.length)toast(t('No duplicates found'));else openDups(g);
+};
+
+// ===== SETTINGS, LANGUAGE, UPDATE CHECK =====
 let provSel='groq';
 function fillSet(){const c=cfg();provSel=c.prov||'groq';
   [...$('prov').children].forEach(b=>b.classList.toggle('active',b.dataset.v===provSel));
-  $('gk').value=c.groqKey||'';$('gm').value=c.groqModel||'';$('mk').value=c.geminiKey||'';$('mm').value=c.geminiModel||'';$('cats').value=c.cats||DEF_CATS}
+  [...$('langSeg').children].forEach(b=>b.classList.toggle('active',b.dataset.v===lang));
+  $('gk').value=c.groqKey||'';$('gm').value=c.groqModel||'';$('mk').value=c.geminiKey||'';$('mm').value=c.geminiModel||'';$('cats').value=c.cats||DEF_CATS;
+  $('lblN').textContent=t('{n} photos remembered',{n:Object.keys(lmem).length});}
 $('sset').onclick=()=>{fillSet();$('setp').classList.add('on')};
 $('prov').onclick=e=>{const b=e.target.closest('button');if(!b)return;provSel=b.dataset.v;[...$('prov').children].forEach(x=>x.classList.toggle('active',x===b))};
+$('langSeg').onclick=e=>{const b=e.target.closest('button');if(!b)return;setLang(b.dataset.v);[...$('langSeg').children].forEach(x=>x.classList.toggle('active',x===b))};
+$('clrLbl').onclick=()=>{lmem={};lsave();$('lblN').textContent=t('{n} photos remembered',{n:0});toast(t('Saved labels cleared'))};
 $('setx').onclick=()=>{$('setp').classList.remove('on');restoreNav()};
-$('setok').onclick=()=>{try{localStorage.setItem('cfg',JSON.stringify({prov:provSel,groqKey:$('gk').value.trim(),groqModel:$('gm').value.trim(),geminiKey:$('mk').value.trim(),geminiModel:$('mm').value.trim(),cats:$('cats').value.trim()}))}catch(e){}
-  $('setp').classList.remove('on');restoreNav();toast('Settings saved')};
+$('setok').onclick=()=>{saveCfg({prov:provSel,groqKey:$('gk').value.trim(),groqModel:$('gm').value.trim(),geminiKey:$('mk').value.trim(),geminiModel:$('mm').value.trim(),cats:$('cats').value.trim()});
+  $('setp').classList.remove('on');restoreNav();toast(t('Settings saved'));if($('stage').classList.contains('on')&&!st.busy&&!st.done)showPlaceholders()};
+
+function trNode(n){
+  const p=n.parentNode;if(!p||p.nodeName==='SCRIPT'||p.nodeName==='STYLE')return;
+  const raw=n._o!==undefined?n._o:n.nodeValue,s=raw.trim();if(!s)return;
+  if(lang==='hi'&&HI[s]){if(n._o===undefined)n._o=raw;const v=raw.replace(s,HI[s]);if(n.nodeValue!==v)n.nodeValue=v}
+  else if(n._o!==undefined&&n.nodeValue!==n._o)n.nodeValue=n._o;
+}
+function walkTr(root){
+  const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT),a=[];let n;while(n=w.nextNode())a.push(n);a.forEach(trNode);
+  if(root.querySelectorAll)root.querySelectorAll('[placeholder]').forEach(e=>{if(e._ph===undefined)e._ph=e.getAttribute('placeholder');e.setAttribute('placeholder',(lang==='hi'&&HI[e._ph])||e._ph)});
+}
+function setLang(l){
+  lang=l;try{localStorage.setItem('ts_lang',l)}catch(e){}
+  document.documentElement.lang=l==='hi'?'hi':'en-IN';$('langBtn').textContent=l==='hi'?'EN':'हिं';
+  walkTr(document.body);document.title=l==='hi'?'इमेज स्टूडियो':'Image Studio';
+  if(items.length){renderAlbums();updateUI();$('sortTxt').textContent=t('Sort: {s}',{s:t(sorts[sortMode])})}
+  if(window.__apkN&&$('apkBanner').style.display!=='none')$('apkTxt').textContent=t('New app version available (build {n}).',{n:window.__apkN});
+  sortBtn();if($('sheet').classList.contains('on'))openSheet();
+}
+$('langBtn').onclick=()=>setLang(lang==='hi'?'en':'hi');
+new MutationObserver(ms=>{if(lang!=='hi')return;ms.forEach(m=>m.addedNodes.forEach(n=>{if(n.nodeType===3)trNode(n);else if(n.nodeType===1)walkTr(n)}))}).observe(document.body,{childList:true,subtree:true});
+
+async function checkApk(manual){
+  if(!native)return;
+  try{
+    let mine=0;try{mine=(await (await fetch('build.json',{cache:'no-store'})).json()).build||0}catch(e){}
+    const r=await fetch('https://api.github.com/repos/wondermayank-comedy/Photo-apk/releases/tags/latest',{headers:{Accept:'application/vnd.github+json'}});
+    if(!r.ok){if(manual)toast(t('Could not check for updates'));return}
+    const j=await r.json(),m=/build\s+(\d+)/i.exec(j.name||''),latest=m?+m[1]:0,asset=(j.assets||[]).find(a=>/\.apk$/i.test(a.name));
+    if(latest>mine&&asset){
+      let dis=0;try{dis=+localStorage.getItem('ts_apk_dis')||0}catch(e){}
+      if(dis>=latest&&!manual)return;
+      window.__apkN=latest;$('apkTxt').textContent=t('New app version available (build {n}).',{n:latest});$('apkBanner').style.display='flex';
+      $('apkGo').onclick=()=>{location.href=asset.browser_download_url};
+      $('apkX').onclick=()=>{$('apkBanner').style.display='none';try{localStorage.setItem('ts_apk_dis',String(latest))}catch(e){}};
+      if(manual){$('setp').classList.remove('on');restoreNav();scrollTo({top:0})}
+    }else if(manual)toast(t('You have the latest version'));
+  }catch(e){if(manual)toast(t('Could not check for updates'))}
+}
+$('chkApk').onclick=()=>checkApk(true);
+
+Object.assign(HI,{"Free image tools": "मुफ़्त इमेज टूल्स", "Sort, convert and rename": "छाँटें, बदलें और नाम बदलें", "your photos": "अपनी फ़ोटो", "Your whole gallery, folder by folder. Press and hold to select photos, then sort, convert and rename them.": "आपकी पूरी गैलरी, फ़ोल्डर के अनुसार। फ़ोटो चुनने के लिए दबाकर रखें, फिर उन्हें छाँटें, बदलें और नाम बदलें।", "Show my photos": "मेरी फ़ोटो दिखाएँ", "Allow access once and every photo on your phone appears here, grouped by folder.": "एक बार अनुमति दें, फिर फ़ोन की हर फ़ोटो फ़ोल्डर के अनुसार यहाँ दिखेगी।", "Allow access": "अनुमति दें", "Prefer to pick files?": "फ़ाइलें खुद चुनना चाहते हैं?", "Choose images": "इमेज चुनें", "Select all": "सभी चुनें", "Clear": "साफ़ करें", "Invert": "उलटा चुनें", "Refresh": "रीफ़्रेश", "Add files": "फ़ाइलें जोड़ें", "Duplicates": "डुप्लिकेट", "Sort: {s}": "क्रम: {s}", "Newest": "नई पहले", "Name": "नाम", "Oldest": "पुरानी पहले", "Size": "आकार", "All photos": "सभी फ़ोटो", "Picked files": "चुनी हुई फ़ाइलें", "{n} photos": "{n} फ़ोटो", "{n} selected": "{n} चुने गए", "selected": "चुने गए", "Loading your photos…": "आपकी फ़ोटो लोड हो रही हैं…", "Reading every folder. Large galleries take a few seconds.": "हर फ़ोल्डर पढ़ा जा रहा है। बड़ी गैलरी में कुछ सेकंड लगते हैं।", "Found {n} photos…": "{n} फ़ोटो मिलीं…", "No photos found": "कोई फ़ोटो नहीं मिली", "Nothing was found in your gallery yet.": "आपकी गैलरी में अभी कुछ नहीं मिला।", "Try again": "फिर कोशिश करें", "Photo access needed": "फ़ोटो की अनुमति चाहिए", "Tap below and choose Allow all. If Android does not ask, open Settings, Apps, Image Studio, Permissions, Photos and videos.": "नीचे टैप करके \"सभी की अनुमति दें\" चुनें। अगर Android न पूछे, तो सेटिंग्स, ऐप्स, Image Studio, अनुमतियाँ, फ़ोटो और वीडियो खोलें।", "Could not refresh": "रीफ़्रेश नहीं हो सका", "{a} of {b}": "{a} / {b}", "Select": "चुनें", "Selected": "चुना गया", "Select some images first": "पहले कुछ इमेज चुनें", "Add some images first": "पहले कुछ इमेज जोड़ें", "Convert": "बदलें", "AI Sort": "AI सॉर्ट", "Edit & Export": "एडिट और एक्सपोर्ट", "Output": "आउटपुट", "Images": "इमेज", "Format and quality": "फ़ॉर्मेट और क्वालिटी", "Quality for JPG and WebP:": "JPG और WebP की क्वालिटी:", "Size, crop and file size": "साइज़, क्रॉप और फ़ाइल साइज़", "Exact size (pixels)": "सटीक साइज़ (पिक्सेल)", "Fit": "फ़िट", "Crop to fill": "क्रॉप करके भरें", "Fit on white": "सफ़ेद पर फ़िट", "Stretch": "खींचें", "White background": "सफ़ेद बैकग्राउंड", "Crop focus": "क्रॉप फ़ोकस", "Center": "बीच में", "Top (faces)": "ऊपर (चेहरे)", "Scale (when no exact size)": "स्केल (सटीक साइज़ न होने पर)", "Original": "मूल", "Target file size": "लक्षित फ़ाइल साइज़", "Off": "बंद", "Max KB": "अधिकतम KB", "Min KB (optional)": "न्यूनतम KB (वैकल्पिक)", "Save as my preset": "मेरा प्रीसेट सेव करें", "Sizes differ by exam and year. Always check your notification. Compressing needs JPG or WebP, so PNG switches to JPG.": "साइज़ परीक्षा और साल के अनुसार बदलते हैं। हमेशा अपना नोटिफ़िकेशन देखें। कंप्रेस करने के लिए JPG या WebP चाहिए, इसलिए PNG अपने आप JPG हो जाता है।", "Watermark": "वॉटरमार्क", "Text": "टेक्स्ट", "Logo": "लोगो", "Choose logo image": "लोगो इमेज चुनें", "Position": "स्थान", "Bottom right": "नीचे दाएँ", "Bottom left": "नीचे बाएँ", "Tiled": "पूरे पर", "Size:": "साइज़:", "Opacity:": "पारदर्शिता:", "PDF pages": "PDF पेज", "Page size": "पेज साइज़", "Fit image": "इमेज के बराबर", "Orientation": "दिशा", "Auto": "ऑटो", "Portrait": "खड़ा", "Landscape": "आड़ा", "Margin": "मार्जिन", "None": "कोई नहीं", "Small": "छोटा", "Medium": "मध्यम", "Order, rotate and name": "क्रम, घुमाएँ और नाम", "Order": "क्रम", "As selected": "चुनने के क्रम में", "Date": "तारीख", "Rotate": "घुमाएँ", "Name pattern:": "नाम पैटर्न:", "is the number,": "= नंबर,", "original name,": "मूल नाम,", "date": "तारीख", "Start number": "शुरुआती नंबर", "Digits": "अंक", "Cancel": "रद्द करें", "Export": "एक्सपोर्ट", "Preview first": "पहली का प्रीव्यू", "Share": "शेयर", "Preview": "प्रीव्यू", "One PDF with {n} pages": "{n} पेज की एक PDF", "One ZIP with {n} files": "{n} फ़ाइलों की एक ZIP", "Logo ready": "लोगो तैयार", "Could not read the logo": "लोगो पढ़ा नहीं जा सका", "Enter width and height first": "पहले चौड़ाई और ऊँचाई भरें", "Preset name": "प्रीसेट का नाम", "Preset saved": "प्रीसेट सेव हुआ", "Photo": "फ़ोटो", "Signature": "हस्ताक्षर", "Thumb": "अंगूठा", "Passport": "पासपोर्ट", "Square": "वर्ग", "Reorder list is shown for up to 60 photos.": "क्रम बदलने की सूची अधिकतम 60 फ़ोटो के लिए दिखती है।", "Failed": "विफल", "Choose where to save in the share sheet": "शेयर शीट में चुनें कि कहाँ सेव करना है", "Saved {n} image(s) · {s}": "{n} इमेज सेव हुईं · {s}", "folder: Image Studio": "फ़ोल्डर: Image Studio", "Created {f} ({s})": "{f} बन गई ({s})", "{n} could not reach the target size": "{n} लक्षित साइज़ तक नहीं पहुँचीं", "Working…": "काम हो रहा है…", "target not reached": "लक्षित साइज़ नहीं मिला", "AI": "AI", "Sort": "सॉर्ट", "Folders": "फ़ोल्डर", "Replay": "दोबारा", "Create folders": "फ़ोल्डर बनाएँ", "photos": "फ़ोटो", "Ready. Tap Sort and watch them fly into folders.": "तैयार। सॉर्ट दबाएँ और फ़ोटो को फ़ोल्डरों में जाते देखें।", "Preparing…": "तैयारी हो रही है…", "Preparing {n} of {m}…": "तैयारी {n} / {m}…", "Sorting the 200 newest photos here. Select photos to choose your own.": "यहाँ की 200 सबसे नई फ़ोटो छाँटी जा रही हैं। अपनी पसंद की फ़ोटो चुनने के लिए उन्हें चुनें।", "Add your API key in settings": "सेटिंग्स में अपनी API कुंजी जोड़ें", "Analysing {n} of {m}…": "जाँच {n} / {m}…", "{n} remembered": "{n} याद थीं", "Sorting…": "छाँटा जा रहा है…", "Done. Tap a folder to open it, or create the folders in your gallery.": "हो गया। फ़ोल्डर खोलने के लिए टैप करें, या गैलरी में फ़ोल्डर बनाएँ।", "{n} batch(es) failed": "{n} बैच विफल रहे", "Offline rules were used for those.": "उनके लिए ऑफ़लाइन नियम इस्तेमाल हुए।", "{n} selected. Open Convert to rename them.": "{n} चुनी गईं। नाम बदलने के लिए \"बदलें\" खोलें।", "Offline mode makes folders from colour and shape. They appear here after sorting.": "ऑफ़लाइन मोड रंग और आकार से फ़ोल्डर बनाता है। सॉर्ट के बाद वे यहाँ दिखेंगे।", "Add folder": "फ़ोल्डर जोड़ें", "Folder name": "फ़ोल्डर का नाम", "Tap Replay first": "पहले \"दोबारा\" दबाएँ", "Works in the installed app only": "यह केवल इंस्टॉल किए ऐप में काम करता है", "Nothing to copy": "कॉपी करने को कुछ नहीं", "Copy {n} photos into {m} gallery folders? Your originals stay where they are.": "{n} फ़ोटो को {m} गैलरी फ़ोल्डरों में कॉपी करें? आपकी मूल फ़ोटो वहीं रहेंगी।", "Copying {n} of {m}…": "कॉपी हो रही हैं {n} / {m}…", "Copied {n} photos into {m} folders named Sorted-…": "{n} फ़ोटो {m} फ़ोल्डरों (Sorted-…) में कॉपी हुईं", "Duplicate photos": "डुप्लिकेट फ़ोटो", "The oldest photo is kept. Tap a duplicate to keep it instead.": "सबसे पुरानी फ़ोटो रखी जाती है। किसी डुप्लिकेट को रखने के लिए उस पर टैप करें।", "Keep": "रखें", "No duplicates found": "कोई डुप्लिकेट नहीं मिला", "Delete selected": "चुनी हुई हटाएँ", "Delete selected ({n})": "चुनी हुई हटाएँ ({n})", "Delete {n} duplicate photos? This cannot be undone.": "{n} डुप्लिकेट फ़ोटो हटाएँ? यह वापस नहीं होगा।", "Deleted {n} photos": "{n} फ़ोटो हटाईं", "Nothing was deleted": "कुछ नहीं हटाया गया", "Not enough photos": "पर्याप्त फ़ोटो नहीं हैं", "Review and delete": "देखें और हटाएँ", "Close": "बंद करें", "Select in gallery": "गैलरी में चुनें", "Settings": "सेटिंग्स", "Language": "भाषा", "Sorting engine": "सॉर्ट इंजन", "Offline": "ऑफ़लाइन", "Groq API key (console.groq.com)": "Groq API कुंजी (console.groq.com)", "Groq vision model": "Groq विज़न मॉडल", "Gemini API key (aistudio.google.com)": "Gemini API कुंजी (aistudio.google.com)", "Gemini model": "Gemini मॉडल", "Folders (comma separated)": "फ़ोल्डर (कॉमा से अलग)", "Forget saved labels": "सेव किए लेबल भूलें", "{n} photos remembered": "{n} फ़ोटो के लेबल याद हैं", "Saved labels cleared": "सेव किए लेबल हटाए गए", "Keys stay on this phone. With Groq or Gemini, small previews of your images are sent to that service to be labelled. Offline sends nothing.": "कुंजियाँ इसी फ़ोन में रहती हैं। Groq या Gemini के साथ आपकी इमेज के छोटे प्रीव्यू लेबल लगाने के लिए उस सेवा को भेजे जाते हैं। ऑफ़लाइन में कुछ नहीं भेजा जाता।", "Check for app update": "ऐप अपडेट जाँचें", "Save": "सेव करें", "Settings saved": "सेटिंग्स सेव हुईं", "Could not check for updates": "अपडेट नहीं जाँचे जा सके", "You have the latest version": "आपके पास नवीनतम वर्ज़न है", "New app version available (build {n}).": "ऐप का नया वर्ज़न उपलब्ध है (build {n})।", "Download": "डाउनलोड", "Free tools for students and creators. Sort, convert and rename images on your own device.": "छात्रों और क्रिएटर्स के लिए मुफ़्त टूल्स। अपने ही डिवाइस पर इमेज छाँटें, बदलें और नाम बदलें।", "Website": "वेबसाइट", "Contact": "संपर्क", "Image Studio by wondermayank · version": "Image Studio by wondermayank · वर्ज़न", "Your name": "आपका नाम", "Width": "चौड़ाई", "Height": "ऊँचाई"});
+if(lang==='hi')setLang('hi');else $('langBtn').textContent='हिं';
 showLib(false);
-if(native)loadGallery();
+if(native){loadGallery();setTimeout(checkApk,3500)}
+
 </script></body></html>
